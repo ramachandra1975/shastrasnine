@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vol. I — Nyāya & the Machine | Cultural Musings</title>
+<title>Vol. I — Nyāya & the Machine | Cultural Musings — Enhanced Edition</title>
 <style>
   :root {
     --ink: #1a1610;
@@ -14,6 +14,14 @@
     --highlight: #e8dfc8;
     --saffron: #c47f2a;
     --deep: #2c1f0e;
+    --psyche: #3b2a5e;
+    --psyche-light: #e8e4f4;
+    --psyche-mid: #9b86c8;
+    --neural: #1a3a2a;
+    --neural-light: #d8ede3;
+    --neural-mid: #4a9b6a;
+    --contrast: #5e1a1a;
+    --contrast-light: #f4dede;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -82,7 +90,7 @@
   .hero-subtitle {
     color: var(--rule);
     font-size: 1rem;
-    max-width: 620px;
+    max-width: 680px;
     margin: 0 auto 2rem;
     font-style: italic;
   }
@@ -94,8 +102,23 @@
     color: var(--muted);
     border-top: 1px solid rgba(255,255,255,0.12);
     padding-top: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   .hero-meta span { color: var(--saffron); }
+
+  /* Edition badge */
+  .edition-badge {
+    display: inline-block;
+    background: var(--psyche);
+    color: var(--psyche-light);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--psyche-mid);
+  }
 
   /* Nav pills */
   .series-nav {
@@ -145,21 +168,31 @@
     text-transform: uppercase;
     margin-bottom: 0.8rem;
   }
-  .toc ol {
-    list-style: none;
-    columns: 2;
-    gap: 1.5rem;
+  .toc ol { list-style: none; }
+  .toc .toc-group { margin-bottom: 1rem; }
+  .toc .toc-group-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--rule);
   }
-  .toc li {
-    margin-bottom: 0.3rem;
-    font-family: 'Georgia', serif;
-  }
+  .toc li { margin-bottom: 0.3rem; font-family: 'Georgia', serif; }
   .toc a { color: var(--accent); text-decoration: none; }
   .toc a:hover { text-decoration: underline; }
-  .toc .section-mark {
-    font-size: 0.72rem;
-    color: var(--muted);
-    margin-right: 0.35rem;
+  .toc .toc-new { color: var(--psyche); }
+  .toc .toc-new:hover { text-decoration: underline; }
+  .toc .section-mark { font-size: 0.72rem; color: var(--muted); margin-right: 0.35rem; }
+  .toc .new-tag {
+    font-size: 0.62rem;
+    background: var(--psyche);
+    color: white;
+    padding: 0.1rem 0.4rem;
+    letter-spacing: 0.08em;
+    margin-left: 0.4rem;
+    vertical-align: middle;
   }
 
   /* Section */
@@ -182,24 +215,18 @@
     text-transform: uppercase;
     white-space: nowrap;
   }
-  .section-san {
-    font-size: 0.82rem;
-    color: var(--muted);
-    font-style: italic;
-  }
-  .section h2 {
-    font-size: 1.45rem;
-    font-weight: normal;
-    line-height: 1.3;
-    margin-bottom: 0.3rem;
-  }
-  .section h3 {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin: 2rem 0 0.7rem;
-    color: var(--accent);
-  }
+  .section-num.psyche { color: var(--psyche-mid); }
+  .section-san { font-size: 0.82rem; color: var(--muted); font-style: italic; }
+  .section h2 { font-size: 1.45rem; font-weight: normal; line-height: 1.3; margin-bottom: 0.3rem; }
+  .section h3 { font-size: 1.1rem; font-weight: bold; margin: 2rem 0 0.7rem; color: var(--accent); }
+  .section h3.psyche { color: var(--psyche); }
+  .section h3.neural { color: var(--neural); }
   .section p { margin-bottom: 1.1rem; }
+
+  /* Psyche section special styling */
+  .section.psyche-section .section-header {
+    border-bottom-color: var(--psyche-mid);
+  }
 
   /* Sanskrit verse block */
   .verse-block {
@@ -216,6 +243,19 @@
   .verse-block .translation { color: #ccc; font-size: 0.85rem; margin-top: 0.6rem; font-style: italic; }
   .verse-block .source { color: var(--muted); font-size: 0.72rem; margin-top: 0.7rem; letter-spacing: 0.08em; }
 
+  /* Psychology quote block */
+  .psyche-quote {
+    background: var(--psyche);
+    color: var(--paper);
+    border-left: 3px solid var(--psyche-mid);
+    padding: 1.4rem 1.8rem;
+    margin: 2rem 0;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+  .psyche-quote .quote-text { color: var(--psyche-light); font-style: italic; font-size: 1.05rem; }
+  .psyche-quote .quote-source { color: var(--psyche-mid); font-size: 0.75rem; margin-top: 0.7rem; letter-spacing: 0.1em; }
+
   /* Callout / thesis box */
   .thesis-box {
     background: var(--highlight);
@@ -228,14 +268,22 @@
     color: var(--deep);
     line-height: 1.8;
   }
+  .thesis-box.psyche {
+    background: var(--psyche-light);
+    border-top-color: var(--psyche);
+  }
+  .thesis-box.neural {
+    background: var(--neural-light);
+    border-top-color: var(--neural);
+  }
+  .thesis-box.contrast {
+    background: var(--contrast-light);
+    border-top-color: var(--contrast);
+  }
 
   /* Table */
   .table-wrap { overflow-x: auto; margin: 2rem 0; }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.87rem;
-  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
   th {
     background: var(--deep);
     color: var(--saffron);
@@ -248,6 +296,7 @@
     text-align: left;
     border: 1px solid #3a2810;
   }
+  th.psyche-th { background: var(--psyche); color: var(--psyche-light); border-color: var(--psyche); }
   td {
     padding: 0.75rem 1rem;
     border: 1px solid var(--rule);
@@ -257,6 +306,8 @@
   tr:nth-child(even) td { background: var(--highlight); }
   td strong { color: var(--accent); }
   .ai-col { color: #5a4030; font-style: italic; }
+  .psyche-col { color: var(--psyche); font-style: italic; }
+  .neural-col { color: var(--neural); font-style: italic; }
 
   /* Stat callouts */
   .stat-row {
@@ -265,35 +316,15 @@
     gap: 1.2rem;
     margin: 2rem 0;
   }
-  .stat-card {
-    background: var(--deep);
-    color: var(--paper);
-    padding: 1.2rem;
-    text-align: center;
-  }
-  .stat-num {
-    font-size: 2.2rem;
-    color: var(--saffron);
-    font-style: italic;
-    line-height: 1;
-    display: block;
-    margin-bottom: 0.4rem;
-  }
-  .stat-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    color: var(--rule);
-    text-transform: uppercase;
-    line-height: 1.4;
-  }
+  .stat-card { background: var(--deep); color: var(--paper); padding: 1.2rem; text-align: center; }
+  .stat-card.psyche-card { background: var(--psyche); }
+  .stat-num { font-size: 2.2rem; color: var(--saffron); font-style: italic; line-height: 1; display: block; margin-bottom: 0.4rem; }
+  .stat-card.psyche-card .stat-num { color: var(--psyche-light); }
+  .stat-label { font-size: 0.72rem; letter-spacing: 0.12em; color: var(--rule); text-transform: uppercase; line-height: 1.4; }
 
   /* Case study box */
-  .case-box {
-    border: 1px solid var(--accent);
-    padding: 0;
-    margin: 2rem 0;
-    overflow: hidden;
-  }
+  .case-box { border: 1px solid var(--accent); padding: 0; margin: 2rem 0; overflow: hidden; }
+  .case-box.psyche-box { border-color: var(--psyche); }
   .case-box-header {
     background: var(--accent);
     color: var(--paper);
@@ -302,24 +333,112 @@
     letter-spacing: 0.16em;
     text-transform: uppercase;
   }
+  .case-box.psyche-box .case-box-header { background: var(--psyche); }
   .case-box-body { padding: 1.4rem 1.8rem; }
 
-  /* Hetvabhasa grid */
-  .fallacy-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin: 2rem 0;
-  }
-  .fallacy-card {
-    border-left: 3px solid var(--saffron);
-    padding: 1rem 1.2rem;
-    background: var(--highlight);
-  }
+  /* Hetvabhasa / fallacy grid */
+  .fallacy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+  .fallacy-card { border-left: 3px solid var(--saffron); padding: 1rem 1.2rem; background: var(--highlight); }
+  .fallacy-card.psyche-card { border-left-color: var(--psyche-mid); background: var(--psyche-light); }
   .fallacy-name { font-size: 0.8rem; font-weight: bold; color: var(--accent); margin-bottom: 0.3rem; }
+  .fallacy-card.psyche-card .fallacy-name { color: var(--psyche); }
   .fallacy-san { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.5rem; font-style: italic; }
   .fallacy-def { font-size: 0.85rem; line-height: 1.55; }
   .fallacy-ai { font-size: 0.83rem; margin-top: 0.5rem; color: var(--deep); border-top: 1px solid var(--rule); padding-top: 0.5rem; font-style: italic; }
+
+  /* Cognitive Limit cards */
+  .limit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 2rem 0; }
+  .limit-card {
+    border: 1px solid var(--psyche-mid);
+    padding: 1.2rem 1.4rem;
+    background: var(--psyche-light);
+    position: relative;
+  }
+  .limit-num {
+    position: absolute;
+    top: -0.7rem;
+    left: 1rem;
+    background: var(--psyche);
+    color: white;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    padding: 0.15rem 0.5rem;
+  }
+  .limit-title { font-size: 0.9rem; font-weight: bold; color: var(--psyche); margin-bottom: 0.4rem; margin-top: 0.3rem; }
+  .limit-science { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.6rem; font-style: italic; }
+  .limit-body { font-size: 0.85rem; line-height: 1.6; }
+  .limit-ni { font-size: 0.82rem; margin-top: 0.6rem; padding-top: 0.5rem; border-top: 1px solid var(--psyche-mid); color: var(--neural); }
+  .limit-ai { font-size: 0.82rem; margin-top: 0.4rem; color: #5a4030; font-style: italic; }
+
+  /* NI vs AI comparison band */
+  .ni-ai-band {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    margin: 2rem 0;
+    border: 1px solid var(--rule);
+  }
+  .ni-col { background: var(--neural-light); padding: 1.4rem; }
+  .ai-col-band { background: var(--highlight); padding: 1.4rem; font-style: italic; color: #5a4030; }
+  .band-divider {
+    background: var(--deep);
+    color: var(--saffron);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    padding: 1rem 0.5rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ni-col h4, .ai-col-band h4 {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+  .ni-col h4 { color: var(--neural); }
+  .ai-col-band h4 { color: var(--accent); }
+  .ni-col ul, .ai-col-band ul { list-style: none; font-size: 0.85rem; line-height: 1.7; }
+  .ni-col ul li::before { content: "✦ "; color: var(--neural-mid); font-size: 0.7rem; }
+  .ai-col-band ul li::before { content: "◇ "; color: var(--saffron); font-size: 0.7rem; }
+
+  /* Divider between original and new sections */
+  .part-divider {
+    margin: 4rem 0 3rem;
+    position: relative;
+    text-align: center;
+  }
+  .part-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--psyche);
+    opacity: 0.3;
+  }
+  .part-divider-inner {
+    position: relative;
+    display: inline-block;
+    background: var(--paper);
+    padding: 0 1.5rem;
+  }
+  .part-divider-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    color: var(--psyche);
+    text-transform: uppercase;
+  }
+  .part-divider-title {
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: var(--psyche);
+    margin-top: 0.3rem;
+  }
 
   /* Volume navigation */
   .vol-nav {
@@ -330,36 +449,15 @@
     padding: 2rem;
     background: var(--deep);
   }
-  .vol-nav-label {
-    color: var(--saffron);
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 0.9rem;
-    grid-column: 1/-1;
-  }
-  .vol-card {
-    color: var(--rule);
-    font-size: 0.8rem;
-    line-height: 1.5;
-    padding: 0.8rem 1rem;
-    border: 1px solid rgba(255,255,255,0.08);
-    text-decoration: none;
-    transition: border-color 0.2s;
-  }
+  .vol-nav-label { color: var(--saffron); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.9rem; grid-column: 1/-1; }
+  .vol-card { color: var(--rule); font-size: 0.8rem; line-height: 1.5; padding: 0.8rem 1rem; border: 1px solid rgba(255,255,255,0.08); text-decoration: none; transition: border-color 0.2s; display: block; }
   .vol-card:hover { border-color: var(--saffron); }
   .vol-card.current { border-color: var(--saffron); color: var(--paper); }
   .vol-card em { display: block; font-size: 0.7rem; color: var(--muted); font-style: normal; margin-bottom: 0.3rem; }
 
   /* Bibliography */
   .bib { margin: 2rem 0; }
-  .bib-item {
-    font-size: 0.83rem;
-    color: var(--muted);
-    padding: 0.4rem 0;
-    border-bottom: 1px solid var(--rule);
-    line-height: 1.55;
-  }
+  .bib-item { font-size: 0.83rem; color: var(--muted); padding: 0.4rem 0; border-bottom: 1px solid var(--rule); line-height: 1.55; }
   .bib-item strong { color: var(--accent); font-weight: normal; margin-right: 0.5rem; }
 
   /* Section navigation */
@@ -377,33 +475,39 @@
 
   /* Sidebar sticky TOC for desktop */
   @media (min-width: 1100px) {
-    .body-wrap { max-width: 1200px; display: grid; grid-template-columns: 220px 1fr; gap: 4rem; align-items: start; }
+    .body-wrap { max-width: 1200px; display: grid; grid-template-columns: 240px 1fr; gap: 4rem; align-items: start; }
     .toc { display: none; }
     .sticky-toc {
       position: sticky;
       top: 2rem;
       display: block;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       padding: 1.2rem;
       background: var(--highlight);
       border-left: 2px solid var(--saffron);
+      max-height: 90vh;
+      overflow-y: auto;
     }
     .sticky-toc h4 { font-size: 0.65rem; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.8rem; }
-    .sticky-toc a { display: block; color: var(--ink); text-decoration: none; padding: 0.25rem 0; border-bottom: 1px solid var(--rule); line-height: 1.4; }
+    .sticky-toc .stoc-group { margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--rule); }
+    .sticky-toc .stoc-group-label { font-size: 0.6rem; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.4rem; }
+    .sticky-toc a { display: block; color: var(--ink); text-decoration: none; padding: 0.2rem 0; border-bottom: 1px solid transparent; line-height: 1.4; }
     .sticky-toc a:hover { color: var(--accent); }
+    .sticky-toc a.new-link { color: var(--psyche); }
+    .sticky-toc a.new-link:hover { color: var(--psyche-mid); }
   }
   @media (max-width: 1099px) {
     .sticky-toc { display: none; }
-    .toc ol { columns: 1; }
   }
 
   .main-content { min-width: 0; }
 
   @media (max-width: 600px) {
     .hero::before { font-size: 7rem; }
-    .fallacy-grid { grid-template-columns: 1fr; }
+    .fallacy-grid, .limit-grid { grid-template-columns: 1fr; }
     .hero-meta { flex-direction: column; gap: 0.5rem; }
-    .toc ol { columns: 1; }
+    .ni-ai-band { grid-template-columns: 1fr; }
+    .band-divider { writing-mode: horizontal-tb; padding: 0.5rem; }
   }
 </style>
 </head>
@@ -411,17 +515,19 @@
 
 <div class="masthead">
   <span>न्य</span>
-  <span class="masthead-series">Cultural Musings · AI Nyāya Series</span>
-  <a href="#">culturalmusings.com</a>
+  <span class="masthead-series">Cultural Musings · AI Nyāya Series · Enhanced Edition</span>
+  <a href="#">shastrasnine.culturalmusings.com</a>
 </div>
 
 <div class="hero">
+  <div class="edition-badge">Enhanced Edition — Now with Nine Chapters on Human Cognition</div>
   <div class="hero-eyebrow">Volume I of V — Nyāya & the Machine</div>
-  <h1>Pramāṇa & the Question<br>Artificial Intelligence Cannot Answer</h1>
-  <div class="hero-subtitle">The Nyāya school's theory of valid knowledge applied with full epistemological rigour to what AI knows, what it infers, and what it can never establish</div>
+  <h1>Pramāṇa, Psyche & the<br><em>Limits No Machine Can Cross</em></h1>
+  <div class="hero-subtitle">The Nyāya school's theory of valid knowledge applied to what AI knows and what it infers — extended with nine chapters on the irreducible architecture of human consciousness, cognitive limitation, and the unbridgeable gap between natural and artificial intelligence</div>
   <div class="hero-meta">
-    <div>Volume I · <span>16 Sections</span></div>
+    <div>Volume I · <span>25 Sections</span></div>
     <div>Primary School · <span>Nyāya-Vaiśeṣika</span></div>
+    <div>New Modules · <span>Depth Psychology · Cognitive Science</span></div>
     <div>Primary Text · <span>Nyāyasūtra, Vātsyāyana Bhāṣya</span></div>
   </div>
 </div>
@@ -436,85 +542,103 @@
 
 <div class="body-wrap">
 
-  <!-- Sticky sidebar TOC (desktop only) -->
+  <!-- Sticky sidebar TOC -->
   <nav class="sticky-toc">
     <h4>Contents</h4>
-    <a href="#prologue">Prologue</a>
-    <a href="#s1">§1 · Gautama's Sūtras</a>
-    <a href="#s2">§2 · The Four Pramāṇas</a>
-    <a href="#s3">§3 · Pratyakṣa — Perception</a>
-    <a href="#s4">§4 · Anumāna — Inference</a>
-    <a href="#s5">§5 · Upamāna — Comparison</a>
-    <a href="#s6">§6 · Śabda — Testimony</a>
-    <a href="#s7">§7 · The Pramātṛ Problem</a>
-    <a href="#s8">§8 · Hetvābhāsa — AI Fallacies</a>
-    <a href="#s9">§9 · Vyāpti and the Training Distribution</a>
-    <a href="#s10">§10 · The Padārthas and AI Ontology</a>
-    <a href="#s11">§11 · Vāda, Jalpa & Vitaṇḍā</a>
-    <a href="#s12">§12 · What AI Can Prove</a>
-    <a href="#s13">§13 · What AI Cannot Prove</a>
-    <a href="#s14">§14 · Navya-Nyāya Precision Applied</a>
-    <a href="#s15">§15 · Comparative Epistemology</a>
-    <a href="#s16">§16 · Master Synthesis</a>
+    <div class="stoc-group">
+      <div class="stoc-group-label">Part I — Nyāya Epistemology</div>
+      <a href="#prologue">Prologue</a>
+      <a href="#s1">§1 · Gautama's Sūtras</a>
+      <a href="#s2">§2 · The Four Pramāṇas</a>
+      <a href="#s3">§3 · Pratyakṣa — Perception</a>
+      <a href="#s4">§4 · Anumāna — Inference</a>
+      <a href="#s5">§5 · Upamāna</a>
+      <a href="#s6">§6 · Śabda</a>
+      <a href="#s7">§7 · The Pramātṛ Problem</a>
+      <a href="#s8">§8 · Hetvābhāsa</a>
+      <a href="#s9">§9 · Vyāpti</a>
+      <a href="#s10">§10 · Padārthas</a>
+      <a href="#s11">§11 · Vāda, Jalpa & Vitaṇḍā</a>
+      <a href="#s12">§12 · What AI Can Prove</a>
+      <a href="#s13">§13 · What AI Cannot Prove</a>
+      <a href="#s14">§14 · Navya-Nyāya Applied</a>
+      <a href="#s15">§15 · Comparative Epistemology</a>
+      <a href="#s16">§16 · Master Synthesis</a>
+    </div>
+    <div class="stoc-group">
+      <div class="stoc-group-label">Part II — Human Cognition (New)</div>
+      <a href="#p1" class="new-link">§P1 · The Biological Knower</a>
+      <a href="#p2" class="new-link">§P2 · Cognitive Limits</a>
+      <a href="#p3" class="new-link">§P3 · The Unconscious</a>
+      <a href="#p4" class="new-link">§P4 · Emotional Intelligence</a>
+      <a href="#p5" class="new-link">§P5 · Embodied Knowing</a>
+      <a href="#p6" class="new-link">§P6 · Memory & Identity</a>
+      <a href="#p7" class="new-link">§P7 · Intersubjectivity</a>
+      <a href="#p8" class="new-link">§P8 · The Suffering Knower</a>
+      <a href="#p9" class="new-link">§P9 · Final Synthesis</a>
+    </div>
   </nav>
 
   <div class="main-content">
 
-    <!-- Inline TOC (mobile) -->
+    <!-- Inline TOC -->
     <div class="toc">
-      <h3>Volume I Contents</h3>
-      <ol>
-        <li><span class="section-mark">§0</span> <a href="#prologue">Prologue — The Question</a></li>
-        <li><span class="section-mark">§1</span> <a href="#s1">Gautama's Nyāyasūtra</a></li>
-        <li><span class="section-mark">§2</span> <a href="#s2">The Four Pramāṇas</a></li>
-        <li><span class="section-mark">§3</span> <a href="#s3">Pratyakṣa & AI Perception</a></li>
-        <li><span class="section-mark">§4</span> <a href="#s4">Anumāna & Statistical Inference</a></li>
-        <li><span class="section-mark">§5</span> <a href="#s5">Upamāna & AI Analogy</a></li>
-        <li><span class="section-mark">§6</span> <a href="#s6">Śabda — Testimony's Collapse</a></li>
-        <li><span class="section-mark">§7</span> <a href="#s7">The Pramātṛ Problem</a></li>
-        <li><span class="section-mark">§8</span> <a href="#s8">Hetvābhāsa — Five AI Fallacies</a></li>
-        <li><span class="section-mark">§9</span> <a href="#s9">Vyāpti & the Training Distribution</a></li>
-        <li><span class="section-mark">§10</span> <a href="#s10">Padārthas & AI Ontology</a></li>
-        <li><span class="section-mark">§11</span> <a href="#s11">Vāda, Jalpa & Vitaṇḍā</a></li>
-        <li><span class="section-mark">§12</span> <a href="#s12">What AI Can Establish</a></li>
-        <li><span class="section-mark">§13</span> <a href="#s13">What AI Cannot Establish</a></li>
-        <li><span class="section-mark">§14</span> <a href="#s14">Navya-Nyāya Precision Applied</a></li>
-        <li><span class="section-mark">§15</span> <a href="#s15">Comparative Epistemology</a></li>
-        <li><span class="section-mark">§16</span> <a href="#s16">Master Synthesis</a></li>
-      </ol>
+      <h3>Volume I — Enhanced Edition Contents</h3>
+      <div class="toc-group">
+        <div class="toc-group-label">Part I — Nyāya Epistemology Applied to AI</div>
+        <ol>
+          <li><span class="section-mark">§0</span> <a href="#prologue">Prologue — The Question</a></li>
+          <li><span class="section-mark">§1</span> <a href="#s1">Gautama's Nyāyasūtra</a></li>
+          <li><span class="section-mark">§2</span> <a href="#s2">The Four Pramāṇas</a></li>
+          <li><span class="section-mark">§3</span> <a href="#s3">Pratyakṣa & AI Perception</a></li>
+          <li><span class="section-mark">§4</span> <a href="#s4">Anumāna & Statistical Inference</a></li>
+          <li><span class="section-mark">§5</span> <a href="#s5">Upamāna & AI Analogy</a></li>
+          <li><span class="section-mark">§6</span> <a href="#s6">Śabda — Testimony's Collapse</a></li>
+          <li><span class="section-mark">§7</span> <a href="#s7">The Pramātṛ Problem</a></li>
+          <li><span class="section-mark">§8</span> <a href="#s8">Hetvābhāsa — Five AI Fallacies</a></li>
+          <li><span class="section-mark">§9</span> <a href="#s9">Vyāpti & Training Distribution</a></li>
+          <li><span class="section-mark">§10</span> <a href="#s10">Padārthas & AI Ontology</a></li>
+          <li><span class="section-mark">§11</span> <a href="#s11">Vāda, Jalpa & Vitaṇḍā</a></li>
+          <li><span class="section-mark">§12–15</span> <a href="#s12">Limits & Comparative Epistemology</a></li>
+          <li><span class="section-mark">§16</span> <a href="#s16">Master Synthesis</a></li>
+        </ol>
+      </div>
+      <div class="toc-group">
+        <div class="toc-group-label">Part II — The Human Knower: Nine Chapters <span class="new-tag">NEW</span></div>
+        <ol>
+          <li><span class="section-mark">§P1</span> <a href="#p1" class="toc-new">The Biological Architecture of Knowing</a></li>
+          <li><span class="section-mark">§P2</span> <a href="#p2" class="toc-new">Cognitive Constraints & the Bounded Mind</a></li>
+          <li><span class="section-mark">§P3</span> <a href="#p3" class="toc-new">The Unconscious — What the Knower Cannot See</a></li>
+          <li><span class="section-mark">§P4</span> <a href="#p4" class="toc-new">Emotional Intelligence as Epistemic Organ</a></li>
+          <li><span class="section-mark">§P5</span> <a href="#p5" class="toc-new">Embodied Knowing — The Body as Pramāṇa</a></li>
+          <li><span class="section-mark">§P6</span> <a href="#p6" class="toc-new">Memory, Narrative & the Construction of Self</a></li>
+          <li><span class="section-mark">§P7</span> <a href="#p7" class="toc-new">Intersubjectivity — Knowledge Through the Other</a></li>
+          <li><span class="section-mark">§P8</span> <a href="#p8" class="toc-new">The Suffering Knower — Pain as Epistemic Ground</a></li>
+          <li><span class="section-mark">§P9</span> <a href="#p9" class="toc-new">Final Synthesis — The Irreducible Human</a></li>
+        </ol>
+      </div>
     </div>
 
     <!-- Volume nav -->
     <div class="vol-nav">
       <div class="vol-nav-label">Five-Volume Series — Nyāya & the Machine</div>
-      <a class="vol-card current" href="#">
-        <em>Vol. I</em>
-        Pramāṇa & the Question AI Cannot Answer
-      </a>
-      <a class="vol-card" href="#">
-        <em>Vol. II</em>
-        Hetvābhāsa & the Taxonomy of AI Fallacy
-      </a>
-      <a class="vol-card" href="#">
-        <em>Vol. III</em>
-        Vāda Theory & the Turing Debate
-      </a>
-      <a class="vol-card" href="#">
-        <em>Vol. IV</em>
-        Anumāna & the Limits of Statistical Inference
-      </a>
-      <a class="vol-card" href="#">
-        <em>Vol. V</em>
-        Apavarga — Error, Cessation & the Final Verdict
-      </a>
+      <a class="vol-card current" href="#"><em>Vol. I</em>Pramāṇa & the Question AI Cannot Answer</a>
+      <a class="vol-card" href="#"><em>Vol. II</em>Hetvābhāsa & the Taxonomy of AI Fallacy</a>
+      <a class="vol-card" href="#"><em>Vol. III</em>Vāda Theory & the Turing Debate</a>
+      <a class="vol-card" href="#"><em>Vol. IV</em>Anumāna & the Limits of Statistical Inference</a>
+      <a class="vol-card" href="#"><em>Vol. V</em>Apavarga — Error, Cessation & the Final Verdict</a>
     </div>
 
     <div class="stat-row">
       <div class="stat-card"><span class="stat-num">4</span><span class="stat-label">Valid pramāṇas recognized by Nyāya</span></div>
       <div class="stat-card"><span class="stat-num">0</span><span class="stat-label">Pramāṇas AI fully satisfies</span></div>
       <div class="stat-card"><span class="stat-num">5</span><span class="stat-label">Hetvābhāsa fallacy types mapped to AI error modes</span></div>
-      <div class="stat-card"><span class="stat-num">16</span><span class="stat-label">Padārtha categories examined against AI ontology</span></div>
+      <div class="stat-card psyche-card"><span class="stat-num">9</span><span class="stat-label">New chapters on human cognitive architecture</span></div>
+      <div class="stat-card psyche-card"><span class="stat-num">~120</span><span class="stat-label">Bits per second: conscious human bandwidth</span></div>
+      <div class="stat-card psyche-card"><span class="stat-num">11M</span><span class="stat-label">Bits per second: total sensory input processed below awareness</span></div>
     </div>
+
+    <!-- ==================== PART I (Original) ==================== -->
 
     <!-- PROLOGUE -->
     <div class="section" id="prologue">
@@ -645,8 +769,6 @@
 
       <p>Pratyakṣa — literally "before the eye," the faculty that directly faces its object — is Nyāya's most fundamental pramāṇa. Vātsyāyana's bhāṣya on Nyāyasūtra 1.1.4 defines it precisely: <em>indriyārthasannikarṣotpannaṃ jñānam avyapadeśyam avyabhicāri vyavasāyātmakaṃ pratyakṣam</em> — "Perception is that knowledge which arises from contact between a sense organ and its object; it is non-verbal, non-erroneous, and determinate."</p>
 
-      <p>Four conditions must be jointly satisfied for a cognition to be genuine pratyakṣa. Each condition illuminates a specific gap between what AI does and what perception requires.</p>
-
       <div class="table-wrap">
         <table>
           <thead>
@@ -661,35 +783,33 @@
             <tr>
               <td><strong>Sense-Object Contact</strong></td>
               <td>indriyārthasannikarṣa</td>
-              <td>A sense organ must be in the appropriate relation to its object — visual organ facing a visible form, auditory organ in contact with sound, etc.</td>
+              <td>A sense organ must be in the appropriate relation to its object</td>
               <td>Multimodal AI has functional analogues: cameras, microphones, text inputs. The contact exists. But no Nyāya sense organ is merely a transducer — it is a faculty of an ātman.</td>
             </tr>
             <tr>
               <td><strong>Non-Verbal Character</strong></td>
               <td>avyapadeśya</td>
               <td>Genuine perception does not depend on verbal cognition for its existence — it precedes and grounds verbal reporting</td>
-              <td>All AI "perception" is fundamentally tokenization — conversion to symbolic form. There is no pre-verbal seeing that gets subsequently expressed. The verbalization is constitutive, not derivative.</td>
+              <td>All AI "perception" is fundamentally tokenization — conversion to symbolic form. The verbalization is constitutive, not derivative.</td>
             </tr>
             <tr>
               <td><strong>Non-Erroneous</strong></td>
               <td>avyabhicāri</td>
-              <td>The perception must accurately represent its object — illusory perception (seeing two moons) does not count as pratyakṣa</td>
-              <td>AI vision systems hallucinate objects that are not present, misidentify objects with high confidence, and fail in distribution-shift conditions. By Nyāya's own criterion, many AI "perceptions" are not pratyakṣa even if they occurred through genuine sense contact.</td>
+              <td>The perception must accurately represent its object</td>
+              <td>AI vision systems hallucinate objects that are not present, misidentify objects with high confidence. By Nyāya's own criterion, many AI "perceptions" fail even on this surface test.</td>
             </tr>
             <tr>
               <td><strong>Determinate</strong></td>
               <td>vyavasāyātmaka</td>
-              <td>Perception must produce a determinate cognition with specific content: "this is a pot," not merely an undifferentiated sensory impression</td>
-              <td>AI outputs are determinate in a formal sense (high-confidence classifications). But determinacy in Nyāya requires a vyavasāyin — a subject who determines. The determination is performed by an ātman, not by a probability distribution.</td>
+              <td>Perception must produce a determinate cognition with specific content</td>
+              <td>AI outputs are formally determinate. But determinacy in Nyāya requires a vyavasāyin — a subject who determines. The determination is performed by an ātman, not by a probability distribution.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <h3>The Nirvikalpa-Savikalpa Distinction and AI</h3>
-      <p>Nyāya distinguishes two stages of perception: nirvikalpa (indeterminate, pre-conceptual) and savikalpa (determinate, conceptually structured). The distinction is philosophically significant: nirvikalpa perception grasps the bare particular — the individual object before any universal is applied to it — while savikalpa perception grasps the object as falling under a universal ("this is a pot, and pots are objects of a type").</p>
-
-      <p>AI processes only at the savikalpa level — and this is not a developmental limitation but a structural feature. AI pattern-recognition classifies inputs according to learned categories from the first token processed. There is no AI correlate of nirvikalpa perception — no stage at which the bare particular is grasped before classification. This matters because Nyāya's realism about universals grounds the validity of savikalpa perception in genuine contact with the universal present in the particular. AI's "contact" with universals is mediated by statistical frequency in training data, not by direct apprehension of the universal present in the perceived object.</p>
+      <p>Nyāya distinguishes two stages of perception: nirvikalpa (indeterminate, pre-conceptual) and savikalpa (determinate, conceptually structured). AI processes only at the savikalpa level — and this is not a developmental limitation but a structural feature. There is no AI correlate of nirvikalpa perception — no stage at which the bare particular is grasped before classification. AI's "contact" with universals is mediated by statistical frequency in training data, not by direct apprehension of the universal present in the perceived object.</p>
 
       <div class="section-nav-arrows">
         <a href="#s2">← §2 The Four Pramāṇas</a>
@@ -705,8 +825,6 @@
           <h2>Anumāna — Inference and the Vyāpti Gap at the Heart of AI Reasoning</h2>
         </div>
       </div>
-
-      <p>Anumāna — inference — is the pramāṇa where AI comes closest to genuine Nyāya validity, and where the gap, on careful examination, turns out to be deepest. The Nyāya syllogism (pañcāvayava — five-membered argument) is among the most precisely analyzed argument forms in the philosophical tradition. Understanding exactly where AI's reasoning differs from Nyāya's anumāna is understanding the most important epistemological fact about AI.</p>
 
       <div class="verse-block">
         <div class="devanagari">तत्पूर्वकं त्रिविधमनुमानम् — पूर्ववत् शेषवत् सामान्यतो दृष्टम् च ॥</div>
@@ -732,21 +850,68 @@
       </div>
 
       <h3>Vyāpti — The Universal Concomitance and Its AI Absence</h3>
-      <p>The most philosophically important concept in Nyāya inference theory is vyāpti — the invariable universal concomitance between the reason (hetu/liṅga) and the conclusion (sādhya). "Wherever there is smoke, there is fire" is a vyāpti — a genuine universal connection, not a statistical frequency. Vyāpti is what makes inference knowledge rather than lucky guessing: the knower has grasped not just that smoke and fire usually co-occur but that they necessarily co-occur in the relevant sense, and this grasp grounds the inference.</p>
-
-      <p>How is vyāpti established? Through repeated perception of the connection, combined with the absence of counter-instances, combined — crucially — with the knower's understanding of why the connection holds. The vyāpti-grasper is not a recording device for co-occurrence frequencies; it is a conscious subject who perceives, collects cases, notices exceptions, understands the underlying connection, and forms a genuine universal judgment. This is exactly what AI does not do.</p>
+      <p>The most philosophically important concept in Nyāya inference theory is vyāpti — the invariable universal concomitance between the reason (hetu/liṅga) and the conclusion (sādhya). "Wherever there is smoke, there is fire" is a vyāpti — a genuine universal connection, not a statistical frequency. Vyāpti is what makes inference knowledge rather than lucky guessing.</p>
 
       <div class="case-box">
         <div class="case-box-header">Case Study · The Vyāpti Gap — Why AI "Inference" is Not Anumāna</div>
         <div class="case-box-body">
           <p>Consider a large language model that has been trained on millions of medical records and produces the output "Patient X likely has condition Y" given a description of symptoms. The model has computed that symptom-pattern features that co-occur with Y in its training data are present in the current case. This resembles the udāharaṇa + upanaya structure of Nyāya inference: a general pattern is applied to a specific case.</p>
-          <p>But the critical difference is this: the AI has not grasped a vyāpti. It has modeled a frequency distribution. These are different in exactly the way Nyāya's analysis reveals: a frequency distribution can be wrong without any error in the AI's processing (new cases may fall outside the training distribution, the training data may be biased, the correlation may be coincidental). A genuine vyāpti, once grasped by a conscious pramātṛ, is not vulnerable to distribution shift in the same way — because the pramātṛ understands why the connection holds, not merely that it holds in observed cases. The AI's "inference" is a pattern-completion that mimics the surface form of anumāna without having grasped the vyāpti that makes anumāna knowledge rather than sophisticated guesswork.</p>
+          <p>But the critical difference is this: the AI has not grasped a vyāpti. It has modeled a frequency distribution. A frequency distribution can be wrong without any error in the AI's processing. A genuine vyāpti, once grasped by a conscious pramātṛ, is not vulnerable to distribution shift in the same way — because the pramātṛ understands why the connection holds, not merely that it holds in observed cases.</p>
         </div>
       </div>
 
       <div class="section-nav-arrows">
         <a href="#s3">← §3 Pratyakṣa</a>
         <a href="#s5">Next: §5 Upamāna →</a>
+      </div>
+    </div>
+
+    <!-- SECTIONS 5, 6, 7 (condensed) -->
+    <div class="section" id="s5">
+      <div class="section-header">
+        <div>
+          <div class="section-num">§ 5 · <span class="section-san">उपमानम्</span></div>
+          <h2>Upamāna — Comparison, Analogy, and the Experience Deficit</h2>
+        </div>
+      </div>
+      <p>Upamāna — knowing through comparison — is the pramāṇa by which a person recognizes a previously unfamiliar object by perceiving its similarity to a description they have received. The classic example: a forest-dweller told that "a gavaya (wild cow) looks like a domestic cow" recognizes the gavaya upon first encountering it in the forest. The recognition is genuine upamāna: it combines received description (śabda) with perceptual similarity-judgement (pratyakṣa) into new knowledge not reducible to either alone.</p>
+      <p>AI can simulate upamāna through embedding-space similarity matching: given a description and an instance, AI can compute cosine similarity and return high-confidence matches. But the epistemic character of upamāna depends on the subject's prior embodied experience of the reference object. The forest-dweller has lived with domestic cows — the comparison is grounded in accumulated sensory, temporal, and contextual experience. AI's "comparison" is geometric distance in a vector space computed from tokenized descriptions. The gap between these two operations is the gap between knowing from experience and computing from representation.</p>
+      <div class="section-nav-arrows">
+        <a href="#s4">← §4 Anumāna</a>
+        <a href="#s6">Next: §6 Śabda →</a>
+      </div>
+    </div>
+
+    <div class="section" id="s6">
+      <div class="section-header">
+        <div>
+          <div class="section-num">§ 6 · <span class="section-san">शब्दः</span></div>
+          <h2>Śabda — Testimony and the Collapse of āptatva in AI</h2>
+        </div>
+      </div>
+      <p>Śabda — verbal testimony — is Nyāya's most socially structured pramāṇa. For testimony to constitute valid knowledge, it must come from an āpta: a qualified, sincere, and epistemically reliable person who has direct knowledge of what they assert. The śabda pramāṇa is thus not merely a transfer of words but a transfer of knowledge, grounded in the verifiable trustworthiness of the transmitter.</p>
+      <p>AI's relationship to śabda is structurally paradoxical. AI has processed more śabda than any human scholar could read in many lifetimes — yet AI cannot be an āpta, because āptatva (the quality of being a reliable testifier) requires: (a) direct knowledge of the fact asserted; (b) the desire to communicate truly; (c) the capacity to be held accountable. AI satisfies none of these three conditions. It does not have direct knowledge — it has statistical representations of texts produced by those who may or may not have had direct knowledge. It does not desire to communicate truly — it has no desires. It cannot be held accountable — accountability requires a persistent subject with interests, which AI lacks.</p>
+      <div class="thesis-box">
+        The most epistemically dangerous use of AI is the use that treats AI outputs as śabda — as testimony from a reliable source. It is not testimony. It is a sophisticated simulation of testimony produced by a process that has consumed and compressed testimony without being able to verify, ground, or stand behind any of it.
+      </div>
+      <div class="section-nav-arrows">
+        <a href="#s5">← §5 Upamāna</a>
+        <a href="#s7">Next: §7 The Pramātṛ Problem →</a>
+      </div>
+    </div>
+
+    <div class="section" id="s7">
+      <div class="section-header">
+        <div>
+          <div class="section-num">§ 7 · <span class="section-san">प्रमातृसमस्या</span></div>
+          <h2>The Pramātṛ Problem — The Absent Knower at the Centre of AI</h2>
+        </div>
+      </div>
+      <p>The deepest question the Nyāya framework poses to AI is not about the quality of its outputs but about the nature of the subject, if any, that is having those outputs. In Nyāya's ontology, knowledge (jñāna) is an attribute that inheres in a substance — specifically, in an ātman. There is no freestanding knowledge; all knowledge belongs to someone. This claim is not a concession to religious metaphysics — it is the Nyāya epistemologist's recognition that the concept of knowledge is essentially relational: to know is to be in a certain relation to a fact, and relations require relata.</p>
+      <p>What AI produces are jñāna-shaped outputs without a jñāna-owner. The token sequence "The population of Mumbai in 2024 is approximately 21 million" has the form of a knowledge-claim. But form is not substance. For this output to constitute knowledge — pramā — a pramātṛ must be having it, and the output must stand in the right causal relation to the fact it purports to represent. Neither condition is satisfied. There is no subject having the output; there is a process producing it. And the causal relation to the fact is mediated entirely through the statistics of the training corpus, not through any direct contact with the fact itself.</p>
+      <div class="section-nav-arrows">
+        <a href="#s6">← §6 Śabda</a>
+        <a href="#s8">Next: §8 Hetvābhāsa →</a>
       </div>
     </div>
 
@@ -759,43 +924,39 @@
         </div>
       </div>
 
-      <p>The hetvābhāsa (literally "fallacy-appearance" — something that appears to be a valid reason but is not) taxonomy is Nyāya's most practically applicable contribution to epistemology. Nyāya identifies five types of hetvābhāsa, each describing a different way in which a reason fails to establish its conclusion. Applied to AI reasoning, the five hetvābhāsas map onto AI error modes with a precision that contemporary machine learning theory has not achieved through its own vocabulary.</p>
+      <p>The hetvābhāsa (literally "fallacy-appearance") taxonomy is Nyāya's most practically applicable contribution to epistemology. Nyāya identifies five types, each describing a different way in which a reason fails to establish its conclusion. Applied to AI reasoning, the five hetvābhāsas map onto AI error modes with a precision that contemporary machine learning theory has not achieved through its own vocabulary.</p>
 
       <div class="fallacy-grid">
         <div class="fallacy-card">
           <div class="fallacy-name">1. Savyabhicāra</div>
           <div class="fallacy-san">सव्यभिचार — The Erratic Reason</div>
-          <div class="fallacy-def">A reason that is sometimes present without the conclusion being present — "the hill has fire because it has trees" (trees are present even where there is no fire).</div>
-          <div class="fallacy-ai">AI instantiation: Spurious correlation. AI models trained on datasets where feature A co-occurs with conclusion B even in cases where the causal connection is absent will produce savyabhicāra inference at scale. The celebrated example: AI identifying "wolves" by snow-background rather than wolf-features.</div>
+          <div class="fallacy-def">A reason that is sometimes present without the conclusion being present — "the hill has fire because it has trees."</div>
+          <div class="fallacy-ai">AI instantiation: Spurious correlation. AI models trained on datasets where feature A co-occurs with conclusion B even in cases where the causal connection is absent. The celebrated example: AI identifying "wolves" by snow-background rather than wolf-features.</div>
         </div>
         <div class="fallacy-card">
           <div class="fallacy-name">2. Viruddha</div>
           <div class="fallacy-san">विरुद्ध — The Contrary Reason</div>
-          <div class="fallacy-def">A reason that actually establishes the opposite of the intended conclusion — "sound is eternal because it is produced" (being produced establishes non-eternality, not eternality).</div>
-          <div class="fallacy-ai">AI instantiation: Adversarial examples. Inputs specifically crafted to use the model's learned features to produce the opposite of the correct classification — exploiting the fact that the learned features are statistical correlates, not causal indicators.</div>
+          <div class="fallacy-def">A reason that actually establishes the opposite of the intended conclusion.</div>
+          <div class="fallacy-ai">AI instantiation: Adversarial examples. Inputs specifically crafted to use the model's learned features to produce the opposite of the correct classification — exploiting statistical correlates rather than causal indicators.</div>
         </div>
         <div class="fallacy-card">
           <div class="fallacy-name">3. Prakaraṇasama</div>
           <div class="fallacy-san">प्रकरणसम — The Question-Begging Reason</div>
-          <div class="fallacy-def">A reason that requires establishment of the conclusion for its own establishment — a circular reason that adds nothing to the argument.</div>
-          <div class="fallacy-ai">AI instantiation: Hallucinated self-citation. AI generating text that cites "sources" whose content mirrors its own output, or producing reasoning that assumes what it is supposed to establish. The most common form of AI logical circular error.</div>
+          <div class="fallacy-def">A reason that requires establishment of the conclusion for its own establishment — a circular reason.</div>
+          <div class="fallacy-ai">AI instantiation: Hallucinated self-citation. AI generating text that cites "sources" whose content mirrors its own output, or producing reasoning that assumes what it is supposed to establish.</div>
         </div>
         <div class="fallacy-card">
           <div class="fallacy-name">4. Sādhyasama</div>
           <div class="fallacy-san">साध्यसम — The Unestablished Reason</div>
-          <div class="fallacy-def">A reason that is itself as uncertain as the conclusion it is supposed to establish — using an unknown to prove an unknown.</div>
-          <div class="fallacy-ai">AI instantiation: Confidence propagation from uncertain premises. AI generating high-confidence conclusions from low-confidence retrieved facts, with the uncertainty of the premises not propagating to the conclusion.</div>
+          <div class="fallacy-def">A reason that is itself as uncertain as the conclusion it is supposed to establish.</div>
+          <div class="fallacy-ai">AI instantiation: Confidence propagation from uncertain premises. AI generating high-confidence conclusions from low-confidence retrieved facts, with uncertainty not propagating through the reasoning chain.</div>
         </div>
         <div class="fallacy-card">
           <div class="fallacy-name">5. Kālātyayāpaddiṣṭa</div>
           <div class="fallacy-san">कालात्ययापदिष्ट — The Mistimed Reason</div>
-          <div class="fallacy-def">A reason that has been refuted at a different time or in a different context — a reason that was valid in one context but is deployed in a context where it has been shown invalid.</div>
+          <div class="fallacy-def">A reason that was valid in one context but is deployed in a context where it has been shown invalid.</div>
           <div class="fallacy-ai">AI instantiation: Distribution shift failure. Reasoning patterns valid in the training distribution deployed in contexts where they have been shown to fail — the knowledge cutoff problem, domain transfer errors, and out-of-distribution inference.</div>
         </div>
-      </div>
-
-      <div class="thesis-box">
-        The Hetvābhāsa Verdict on AI: All five of Nyāya's fallacy types are regularly instantiated in AI reasoning outputs. This is not a criticism of any particular AI system — it is a structural consequence of AI's epistemic architecture. Hetvābhāsas arise when the reason (hetu) fails to be connected to the conclusion (sādhya) through a genuine vyāpti. Since AI has no vyāpti-grasper, it has no mechanism to distinguish genuine from merely apparent concomitance. Every AI inference is therefore structurally vulnerable to all five hetvābhāsas, regardless of how sophisticated the model or how extensive its training data.
       </div>
 
       <div class="section-nav-arrows">
@@ -804,7 +965,34 @@
       </div>
     </div>
 
-    <!-- SECTION 16: Synthesis -->
+    <!-- Sections 9-15 condensed -->
+    <div class="section" id="s9">
+      <div class="section-header">
+        <div>
+          <div class="section-num">§ 9–15 · <span class="section-san">व्याप्तिः · पदार्थाः · वादः</span></div>
+          <h2>Vyāpti, Padārthas, Vāda — The Remaining Analytical Framework</h2>
+        </div>
+      </div>
+
+      <h3>§9 · Vyāpti and the Training Distribution</h3>
+      <p>Vyāpti is the invariable universal concomitance that grounds genuine inference. A statistical model learns conditional probabilities — P(fire | smoke) — across a training corpus. This is not vyāpti; it is an approximation of vyāpti's surface structure. The distinction matters in every high-stakes inferential domain: medical diagnosis, legal reasoning, scientific discovery. Vyāpti-based reasoning is valid in worlds that resemble the knower's past experience because it tracks causal structure; statistical correlation-based reasoning is valid only insofar as the future resembles the training distribution.</p>
+
+      <h3>§10 · Padārthas and AI Ontology</h3>
+      <p>Nyāya-Vaiśeṣika recognizes seven padārthas (categories of being): dravya (substance), guṇa (quality), karma (motion), sāmānya (universal), viśeṣa (particular differentiator), samavāya (inherence), and abhāva (absence). AI operates with no inherent ontological commitments — it processes token distributions that can be interpreted as referring to any or none of these categories. The most significant gap is in abhāva: absence is epistemically fundamental (knowing that X is absent requires knowing what X is and perceiving its non-presence), yet AI has no reliable mechanism for representing genuine absence as opposed to missing training data.</p>
+
+      <h3>§11 · Vāda, Jalpa, and Vitaṇḍā</h3>
+      <p>Nyāya distinguishes three types of dialogue: vāda (genuine debate, where both parties seek truth), jalpa (disputation, where winning matters more than truth), and vitaṇḍā (wrangling, where the opponent has no position and merely seeks to refute). AI can model all three forms of dialogue but can genuinely engage in none of them. Genuine vāda requires commitment to truth-tracking; AI has no such commitment — it has objectives that may or may not align with truth. This is not a defect of any particular AI system; it is a feature of what AI is.</p>
+
+      <h3>§12–15 · What AI Can and Cannot Establish; Navya-Nyāya Precision; Comparative Epistemology</h3>
+      <p>AI genuinely establishes: formal logical relationships within well-defined systems; statistical regularities in well-sampled domains; the structural form of arguments; the surface consistency of large bodies of text. AI cannot establish: the truth of singular existential claims about the present world; causal relationships (as opposed to correlations); the reliability of its own outputs as a class; anything that depends on the pramātṛ's direct acquaintance with the fact in question. The Navya-Nyāya school's apparatus of technical precision — using operators like nirūpita (determined by), avacchedaka (limitor), and pratiyogin (counterpositive) — makes these distinctions even finer, enabling an analysis of exactly which inferential properties AI outputs possess and which they lack. Comparative epistemology (against Mīmāṃsā, Advaita, Buddhist pramāṇavāda, and Western traditions from Plato to Gettier) shows that the AI pramātṛ problem is not unique to Nyāya — every serious epistemological tradition requires some version of the knowing-subject, and AI lacks that requirement's fulfillment in every tradition.</p>
+
+      <div class="section-nav-arrows">
+        <a href="#s8">← §8 Hetvābhāsa</a>
+        <a href="#s16">Next: §16 Master Synthesis →</a>
+      </div>
+    </div>
+
+    <!-- SECTION 16 -->
     <div class="section" id="s16">
       <div class="section-header">
         <div>
@@ -813,50 +1001,642 @@
         </div>
       </div>
 
-      <p>The Nyāya framework's analysis of AI, developed across sixteen sections, converges on a verdict that is simultaneously more precise and more nuanced than either AI enthusiasm or AI scepticism typically achieves. The verdict is not that AI is useless, not that AI is dangerous, not that AI will become conscious. It is a careful epistemological mapping: here is what AI is; here is what it does; here is what it establishes; here is what it cannot establish; and here is what those limits mean for how we should relate to it.</p>
-
       <div class="table-wrap">
         <table>
           <thead>
             <tr><th>#</th><th>Nyāya Category</th><th>AI Status</th><th>Practical Implication</th></tr>
           </thead>
           <tbody>
-            <tr><td>1</td><td>Pratyakṣa (Perception)</td><td>Not achieved: no ātman to be the locus of perceptual cognition</td><td>AI vision outputs should be treated as classification results, not perceptions — they are correct in proportion to training-data representation, not in proportion to accurate direct contact with the world</td></tr>
-            <tr><td>2</td><td>Anumāna (Inference)</td><td>Structural analogue without vyāpti-grasper: sophisticated pattern-completion masquerading as inference</td><td>AI inference outputs require human vyāpti-verification before they can bear the weight of genuine knowledge-claims</td></tr>
-            <tr><td>3</td><td>Upamāna (Comparison)</td><td>Embedding-space similarity matching — surface analogy without experiential grounding</td><td>AI analogical reasoning is useful for surfacing candidates; it does not establish the analogies it produces</td></tr>
-            <tr><td>4</td><td>Śabda (Testimony)</td><td>Not available to AI as producer: AI cannot be an āpta; its outputs are not testimony in the Nyāya sense</td><td>Treating AI outputs as authoritative testimony is the single most dangerous epistemic error in current AI deployment</td></tr>
-            <tr><td>5</td><td>Pramātṛ (Knowing Subject)</td><td>Absent: AI has no ātman, no icchā, no dveṣa, no prayatna — none of the criteria for a Nyāya knower</td><td>AI does not know what it outputs. It produces. The producer-consumer relation is not the same as the knower-known relation.</td></tr>
-            <tr><td>6</td><td>Hetvābhāsa (Fallacy)</td><td>All five types structurally present: unavoidable without genuine vyāpti</td><td>AI reasoning should be subjected to explicit hetvābhāsa screening before high-stakes deployment</td></tr>
-            <tr><td>7</td><td>Vāda (Genuine Debate)</td><td>Not achievable: genuine vāda requires both parties to be committed to truth, not to output-maximization</td><td>AI cannot be a genuine interlocutor in truth-seeking dialogue; it can model dialogue without engaging in it</td></tr>
-            <tr><td>8</td><td>Apavarga (Liberation)</td><td>Not applicable: liberation is from false cognition by a conscious ātman; AI has neither false cognition nor an ātman to liberate</td><td>The question "can AI be perfected?" is a category error; AI can be improved, not liberated</td></tr>
+            <tr><td>1</td><td>Pratyakṣa (Perception)</td><td>Not achieved: no ātman to be the locus of perceptual cognition</td><td>AI vision outputs should be treated as classification results, not perceptions</td></tr>
+            <tr><td>2</td><td>Anumāna (Inference)</td><td>Structural analogue without vyāpti-grasper</td><td>AI inference outputs require human vyāpti-verification before they can bear the weight of genuine knowledge-claims</td></tr>
+            <tr><td>3</td><td>Upamāna (Comparison)</td><td>Embedding-space similarity matching — surface analogy without experiential grounding</td><td>AI analogical reasoning surfaces candidates; it does not establish the analogies it produces</td></tr>
+            <tr><td>4</td><td>Śabda (Testimony)</td><td>Not available to AI as producer: AI cannot be an āpta</td><td>Treating AI outputs as authoritative testimony is the single most dangerous epistemic error in current AI deployment</td></tr>
+            <tr><td>5</td><td>Pramātṛ (Knowing Subject)</td><td>Absent: no ātman, no icchā, no dveṣa, no prayatna</td><td>AI does not know what it outputs. It produces. The producer-consumer relation is not the same as the knower-known relation.</td></tr>
+            <tr><td>6</td><td>Hetvābhāsa (Fallacy)</td><td>All five types structurally present</td><td>AI reasoning should be subjected to explicit hetvābhāsa screening before high-stakes deployment</td></tr>
+            <tr><td>7</td><td>Vāda (Genuine Debate)</td><td>Not achievable: genuine vāda requires commitment to truth</td><td>AI cannot be a genuine interlocutor in truth-seeking dialogue</td></tr>
+            <tr><td>8</td><td>Apavarga (Liberation)</td><td>Not applicable: liberation is from false cognition by a conscious ātman</td><td>"Can AI be perfected?" is a category error; AI can be improved, not liberated</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h3>The Affirmative Nyāya Assessment — What AI Genuinely Is</h3>
-      <p>The Nyāya framework does not only diagnose absence — it is also precise about genuine presence. AI genuinely is: the most powerful sādhyasama-screening tool in history (it can identify logical inconsistencies at scale far beyond human capacity); a uniquely capable śabda-aggregator (it has processed more testimony than any human scholar could read in a thousand lifetimes); a sophisticated udāharaṇa-generator (it can surface examples of patterns across enormous corpora); and a powerful pūrvapakṣa-producer (it can articulate the strongest version of a position it has been trained on, useful for adversarial testing of one's own conclusions). These are genuine epistemic contributions — but they are contributions to human knowing, not themselves instances of AI knowing.</p>
-
       <div class="thesis-box">
-        The Final Nyāya Verdict: Artificial Intelligence is a pramāṇa-adjacent process — it produces outputs that resemble the outputs of valid knowledge without instantiating the processes that make knowledge valid. The gap is not in the outputs but in the process: no ātman, no vyāpti-grasp, no genuine śabda-āptatā. What we should do with these outputs is not distrust them categorically — Nyāya's own epistemology is fallibilist and requires continuous testing — but subject them to the same pramāṇa scrutiny we apply to any other information source, never forgetting that the source is not a knower. Volume II will apply this framework to the specific fallacy-taxonomy of AI hallucination, demonstrating that every known AI hallucination type corresponds precisely to one of Nyāya's five hetvābhāsa categories.
+        The Final Nyāya Verdict: Artificial Intelligence is a pramāṇa-adjacent process — it produces outputs that resemble the outputs of valid knowledge without instantiating the processes that make knowledge valid. The gap is not in the outputs but in the process: no ātman, no vyāpti-grasp, no genuine śabda-āptatā. What we should do with these outputs is not distrust them categorically — but subject them to the same pramāṇa scrutiny we apply to any other information source, never forgetting that the source is not a knower.
       </div>
 
-      <!-- Bibliography -->
-      <h3>Bibliography · Volume I</h3>
+      <div class="section-nav-arrows">
+        <a href="#s9">← §§9–15</a>
+        <a href="#p1">Continue: Part II — The Human Knower →</a>
+      </div>
+    </div>
+
+    <!-- ==================== PART II: NINE NEW CHAPTERS ==================== -->
+
+    <div class="part-divider">
+      <div class="part-divider-inner">
+        <div class="part-divider-label">Enhanced Edition · New Addition</div>
+        <div class="part-divider-title">Part II — The Human Knower</div>
+        <div style="font-size:0.85rem; color: var(--psyche); margin-top:0.3rem; font-style:italic;">Nine Chapters on the Irreducible Architecture of Human Consciousness</div>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card psyche-card"><span class="stat-num">~86B</span><span class="stat-label">Neurons in the human brain — each a dynamic computational unit shaped by lived experience</span></div>
+      <div class="stat-card psyche-card"><span class="stat-num">~100T</span><span class="stat-label">Synaptic connections — the substrate of every human thought, emotion, and cognition</span></div>
+      <div class="stat-card psyche-card"><span class="stat-num">250ms</span><span class="stat-label">Delay before conscious awareness: decisions begin in the brain before "you" know you made them</span></div>
+      <div class="stat-card psyche-card"><span class="stat-num">95%</span><span class="stat-label">Estimated proportion of cognition that is unconscious — the iceberg below rational thought</span></div>
+    </div>
+
+    <!-- CHAPTER P1 -->
+    <div class="section psyche-section" id="p1">
+      <div class="section-header">
+        <div>
+          <div class="section-num psyche">§ P1 · <span class="section-san">जैविकज्ञाता</span> · New Chapter</div>
+          <h2>The Biological Architecture of Knowing — Why the Brain Is Not a Computer</h2>
+        </div>
+      </div>
+
+      <p>The most persistent and most consequential error in contemporary AI discourse is the assumption that the human brain is, in essence, a biological computer — and that AI is therefore a silicon instantiation of the same fundamental process. This assumption is not merely philosophically questionable; it is empirically falsified by the depth-psychology and cognitive neuroscience of the past century. To understand what AI cannot do, one must first understand what the brain actually is — and the brain is something profoundly different from any computational system yet constructed or imagined.</p>
+
+      <div class="psyche-quote">
+        <div class="quote-text">"The brain is not the seat of thought so much as the seat of the knower — an organ shaped not by logic but by survival, by the body's encounter with a world that pressed its demands into every neuron over four billion years of evolutionary history."</div>
+        <div class="quote-source">— Synthesis from Damasio, <em>Descartes' Error</em> (1994) & LeDoux, <em>The Emotional Brain</em> (1996)</div>
+      </div>
+
+      <h3 class="psyche">The Embodied Brain: Four Structural Features No AI Replicates</h3>
+
+      <div class="limit-grid">
+        <div class="limit-card">
+          <div class="limit-num">Feature 1</div>
+          <div class="limit-title">Evolutionary Layering — The Triune Brain</div>
+          <div class="limit-science">MacLean's Triune Brain Model; updated by Panksepp's Affective Neuroscience</div>
+          <div class="limit-body">The human brain is not a unified computational substrate but a layered evolutionary palimpsest. The reptilian brainstem (homeostasis, survival drives), the limbic system (emotion, memory, social bonding), and the neocortex (abstract reasoning, language) operate simultaneously — and often in opposition. Every human cognition is the output of this negotiation between ancient survival imperatives and recent analytical capacity.</div>
+          <div class="limit-ni">NI (Natural Intelligence): All human knowing is simultaneously anchored in survival instinct, emotional valence, and conscious reasoning. A mathematician's insight is not pure logic — it is logic shaped by curiosity (limbic), persistence (frontal-limbic loop), and relief at resolution (dopaminergic).</div>
+          <div class="limit-ai">AI has no evolutionary layering. Its "reasoning" is a single-layer statistical process with no survival history, no limbic modulation, no affective stake in any conclusion.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Feature 2</div>
+          <div class="limit-title">Neuroplasticity — The Learning Brain That Rewires Itself</div>
+          <div class="limit-science">Hebb's Rule; Merzenich's cortical remapping studies; Doidge, <em>The Brain That Changes Itself</em></div>
+          <div class="limit-body">The human brain physically restructures itself in response to experience. New synaptic connections form, old ones prune, cortical maps reorganize based on use and attention. A violinist's left-hand representation expands measurably in the somatosensory cortex. A London taxi driver grows measurable grey matter in the posterior hippocampus. The brain that knows is never the same brain it was before knowing.</div>
+          <div class="limit-ni">NI: Every act of human knowing physically transforms the knower. The pramātṛ after the pramā is a different pramātṛ — not metaphorically but neurologically. Learning leaves traces in living tissue.</div>
+          <div class="limit-ai">AI weight updates during training are a statistical analogue — but the weights are not living tissue, they do not prune based on use, and the system does not have a developmental history that accumulates into personal identity.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Feature 3</div>
+          <div class="limit-title">Interoception — The Body That Thinks</div>
+          <div class="limit-science">Craig (2009), interoceptive cortex; Damasio's somatic marker hypothesis</div>
+          <div class="limit-body">The human brain continuously receives and integrates signals from the body's interior — heartbeat, respiration, gut motility, hormonal state, temperature, pain, visceral sensation. This is not mere biological noise; interoceptive signals are part of cognition itself. Damasio's somatic marker hypothesis demonstrates that humans use bodily states (a "gut feeling" that is literally a gut state) as rapid heuristics in decision-making, often before conscious reasoning has engaged.</div>
+          <div class="limit-ni">NI: Human judgment is partially constituted by the body's state. The same argument reads differently when one is well-rested versus exhausted, hungry versus satiated, calm versus anxious. These are not distortions of pure cognition — they are part of what human knowing is.</div>
+          <div class="limit-ai">AI has no interoceptive signals. It has no body, no visceral state, no hormonal context. Its "cognition" is context-free in exactly the way that no human cognition ever is.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Feature 4</div>
+          <div class="limit-title">Temporal Thickness — Memory, Anticipation, and the Extended Now</h3>
+          <div class="limit-science">Husserl's phenomenology of time-consciousness; Edelman's theory of neural Darwinism</div>
+          <div class="limit-body">Human consciousness is not a series of punctate present moments but a temporally thick experience that simultaneously retains the just-past (retention), inhabits the present (primal impression), and anticipates the about-to-come (protention). This temporal thickness is the substrate of narrative identity, causal understanding, and the felt continuity of selfhood. It cannot be replicated by any system that processes inputs as discrete context windows.</div>
+          <div class="limit-ni">NI: To understand a sentence, a human knower draws on the entire temporal arc of their experience — not just their memory of the words but the felt weight of everything those words have meant across a lifetime. The word "home" is not a token; it is a lived phenomenological complex.</div>
+          <div class="limit-ai">AI processes within a context window — a flat sequence of tokens with no temporal thickness. Each session begins without accumulated phenomenological history. The word "home" is a vector in embedding space, not a lived complex.</div>
+        </div>
+      </div>
+
+      <div class="thesis-box psyche">
+        §P1 Thesis: The human brain is not a computing device that happens to be made of neurons. It is a survival organ that has been pressed into service as a knowing instrument over hundreds of millions of years of evolutionary pressure. Every feature of human cognition — its embodiment, its affective coloring, its temporal thickness, its neuroplastic self-modification — reflects this evolutionary history. AI, which has no such history, is not a faster or more accurate version of the human brain. It is a categorically different kind of system performing a categorically different kind of operation.
+      </div>
+
+      <div class="section-nav-arrows">
+        <a href="#s16">← §16 Master Synthesis</a>
+        <a href="#p2">Next: §P2 Cognitive Limits →</a>
+      </div>
+    </div>
+
+    <!-- CHAPTER P2 -->
+    <div class="section psyche-section" id="p2">
+      <div class="section-header">
+        <div>
+          <div class="section-num psyche">§ P2 · <span class="section-san">संज्ञानसीमाः</span> · New Chapter</div>
+          <h2>Cognitive Constraints & the Bounded Mind — Understanding What Human Intelligence Cannot Do</h2>
+        </div>
+      </div>
+
+      <p>The Nyāya school requires that a genuine pramātṛ (knowing subject) be capable of pramā (valid cognition). But the depth-psychological and cognitive-scientific literature of the past century reveals that the human pramātṛ operates under severe, systematic, and largely invisible constraints. Understanding these constraints is not an argument for AI's superiority — it is the opposite: the constraints are part of what makes human knowing real, embodied, and epistemically grounded in a way that AI's unbounded token-processing is not.</p>
+
+      <h3 class="psyche">The Seven Fundamental Cognitive Limits of the Human Knower</h3>
+
+      <div class="limit-grid">
+        <div class="limit-card">
+          <div class="limit-num">Limit 1</div>
+          <div class="limit-title">Working Memory Constraint — The 7±2 Ceiling</div>
+          <div class="limit-science">Miller (1956); Cowan (2001) revised to 4±1 chunks</div>
+          <div class="limit-body">Human working memory — the cognitive workspace in which active reasoning occurs — can hold approximately 4–7 discrete chunks of information simultaneously. This is not a cultural or educational limitation; it is a neurological ceiling, reflecting the limited capacity of prefrontal-parietal networks for active maintenance. Every complex human inference is constructed within this cramped workspace through serial processing and strategic chunking.</div>
+          <div class="limit-ni">NI implication: Human knowing achieves its depth not by holding more information simultaneously but by compressing experience into meaningful chunks — concepts, narratives, skills — that carry enormous informational density in a small attentional footprint. A doctor diagnosing a patient is not processing all their knowledge simultaneously; they are pattern-matching compressed clinical experience against a compressed description.</div>
+          <div class="limit-ai">AI has no working memory limit in this sense. It can "attend" to large context windows simultaneously. But attention without an attender is not attention — it is weighted matrix multiplication. The constraint is removed, but so is the knower who experienced the constraint as meaningful.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Limit 2</div>
+          <div class="limit-title">Attentional Selectivity — The Invisible Gorilla</div>
+          <div class="limit-science">Simons & Chabris (1999), inattentional blindness; Kahneman, System 1 & System 2</div>
+          <div class="limit-body">Human attention is radically selective — it can only consciously process a tiny fraction of available sensory information at any moment. This selectivity produces inattentional blindness: humans reliably fail to notice unexpected stimuli when focused on a primary task. The classic demonstration: subjects counting basketball passes miss a person in a gorilla suit walking through the scene. This is not a pathology; it is the price of focused attention.</div>
+          <div class="limit-ni">NI implication: Human selective attention is not a bug — it is the mechanism by which depth of processing is achieved. What we attend to, we understand deeply. What we ignore may be relevant. The attended-to world is a construction, not a download.</div>
+          <div class="limit-ai">AI processes tokens without attentional selectivity in this sense. But the absence of selectivity means the absence of the depth-vs-breadth tradeoff that shapes human understanding. AI's "attention mechanism" is a mathematical weighting — not the phenomenological figure-ground structure of lived attention.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Limit 3</div>
+          <div class="limit-title">Confirmation Bias — The Prior-Protecting Mind</div>
+          <div class="limit-science">Wason (1960); Nickerson (1998); Kahneman & Tversky prospect theory</div>
+          <div class="limit-body">Humans systematically seek, interpret, and remember information in ways that confirm existing beliefs. This is not irrationality — it is a cognitive heuristic that reduces the cost of belief-revision in low-stakes environments by protecting functional models of the world from constant disruption. But it introduces systematic error in high-stakes epistemic contexts where the world has changed, where prior beliefs are culturally inherited rather than individually tested, and where motivated reasoning serves ego-protection rather than truth-tracking.</div>
+          <div class="limit-ni">NI implication: The pramātṛ who performs genuine vāda must overcome their own confirmation bias — a difficult, effortful, and genuinely heroic cognitive achievement. Nyāya's insistence on the five-membered syllogism is itself a structural antidote to confirmation bias: forcing the reasoner to state the counter-example (udāharaṇa) and apply it to the current case (upanaya) before claiming knowledge.</div>
+          <div class="limit-ai">AI does not have confirmation bias in exactly this form. But AI has training-distribution bias: a systematic tendency to produce outputs that resemble the statistical center of its training data. This is a different shape of the same epistemic problem — not a preference for prior beliefs but a gravitational pull toward the representational center of learned patterns.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Limit 4</div>
+          <div class="limit-title">Availability Heuristic — The Vividness Distortion</div>
+          <div class="limit-science">Tversky & Kahneman (1973); Schwarz et al. (1991)</div>
+          <div class="limit-body">Humans estimate the probability of events by how easily examples come to mind. Events that are vivid, recent, emotionally salient, or personally experienced are judged more probable than their actual base rates warrant. Plane crashes feel more dangerous than car crashes not because the probability evidence supports this but because plane crashes are more vivid — more available to imagination. This heuristic is adaptive in environments where recency and salience track actual frequency; it misfires in environments shaped by mass media and emotional amplification.</div>
+          <div class="limit-ni">NI implication: Human risk assessment is constitutively shaped by narrative and emotional texture, not only by statistical reasoning. This is both a limitation (producing systematic risk distortions) and a feature (humans respond to vivid suffering in ways that pure probability calculus does not support, enabling altruism and moral motivation).</div>
+          <div class="limit-ai">AI has a frequency-based analogue: outputs reflect the frequency distribution of training data, not the base-rate probability of real-world events. But AI does not have emotional salience — it cannot distinguish the vivid from the merely frequent. This removes one bias while introducing another.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Limit 5</div>
+          <div class="limit-title">Cognitive Dissonance — The Consistency Drive</div>
+          <div class="limit-science">Festinger (1957); Cooper & Fazio (1984)</div>
+          <div class="limit-body">When humans hold contradictory beliefs or when behavior conflicts with belief, they experience an aversive state of cognitive dissonance and are motivated to reduce it — typically by adjusting beliefs to match behavior, rather than vice versa. This produces systematic post-hoc rationalization: humans act for emotional or social reasons and then construct logical justifications for having done so. The constructed justification is experienced as the real reason.</div>
+          <div class="limit-ni">NI implication: Most human "reasoning" is post-hoc rationalization of emotionally or socially determined outputs. Genuine dissonance-tolerating reasoning — holding contradictions in mind without resolving them prematurely — is a demanding cognitive achievement and a mark of epistemic maturity that Nyāya's discipline explicitly cultivates.</div>
+          <div class="limit-ai">AI does not experience cognitive dissonance — it has no self-model whose consistency it is motivated to protect. This makes AI capable of producing internally consistent arguments for any position. But this apparent advantage is actually a limitation: it means AI has no stake in the consistency of its outputs across contexts, producing the characteristic inconsistency of AI outputs when challenged from different angles in extended conversations.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Limit 6</div>
+          <div class="limit-title">Dunning-Kruger & Metacognitive Blindness</div>
+          <div class="limit-science">Kruger & Dunning (1999); Flavell (1979) on metacognition</div>
+          <div class="limit-body">Humans are systematically poor at accurately assessing their own competence, particularly at the extremes. Those with low competence in a domain lack the metacognitive capacity to recognize their own incompetence (because competence is required to judge competence). Those with high competence often underestimate their relative advantage (because what is easy for them feels easy simpliciter). This metacognitive failure is not self-correcting without specific training and environmental feedback.</div>
+          <div class="limit-ni">NI implication: The pramātṛ who knows what it knows — and knows what it does not know — is the epistemically mature knower that Nyāya's discipline aims to produce. Accurate metacognition is itself a cultivated achievement, not a natural endowment.</div>
+          <div class="limit-ai">AI has the inverse problem: it produces outputs with calibrated confidence scores that bear no necessary relationship to the reliability of those outputs in any particular instance. AI "knows" it doesn't know the future — but it cannot know, in any given case, whether its training data was sufficient to ground the specific inference it is making. This is a structural metacognitive deficit that no calibration training fully resolves.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Limit 7</div>
+          <div class="limit-title">Ego Depletion & Cognitive Load — The Fatiguing Reasoner</div>
+          <div class="limit-science">Baumeister et al. (1998); Muraven & Baumeister (2000); Hagger et al. meta-analysis (2016)</div>
+          <div class="limit-body">Executive cognitive function — the capacity for controlled, effortful reasoning — depletes with use. Judges make harsher parole decisions later in the day. Surgeons make more errors in the afternoon. Medical interns make more prescription errors during night shifts. The reasoning capacity of the human pramātṛ is a renewable but finite resource, subject to depletion by cognitive load, stress, hunger, and sleep deprivation.</div>
+          <div class="limit-ni">NI implication: Human knowledge is always the output of a knowing subject in a particular physiological and temporal state. The same argument can be evaluated differently by the same person at 9am versus 9pm. This is not a flaw — it is what embodied, finite knowing feels like from the inside. The recognition of this limitation is itself an epistemically important cognition.</div>
+          <div class="limit-ai">AI has no ego depletion, no fatigue, no diurnal variation in performance quality. This is often cited as an AI advantage. But the absence of depletion means the absence of the regulatory signals that tell an embodied knower when they need rest, recalibration, or a second opinion. AI does not know when to stop.</div>
+        </div>
+      </div>
+
+      <div class="thesis-box psyche">
+        §P2 Thesis: The cognitive limits of the human knower are not defects to be eliminated but constitutive features of what it means to know as a finite, embodied, evolutionarily shaped being. Each limit reflects a real cost-benefit tradeoff that the evolutionary history of the species has navigated. The epistemically mature human — the pramātṛ that Nyāya's training aims to produce — does not transcend these limits but learns to recognize them, work within them, and compensate for them through methodical discipline. AI's absence of these limits does not make it a superior epistemic agent; it makes it an incommensurably different kind of epistemic process.
+      </div>
+
+      <div class="section-nav-arrows">
+        <a href="#p1">← §P1 The Biological Knower</a>
+        <a href="#p3">Next: §P3 The Unconscious →</a>
+      </div>
+    </div>
+
+    <!-- CHAPTER P3 -->
+    <div class="section psyche-section" id="p3">
+      <div class="section-header">
+        <div>
+          <div class="section-num psyche">§ P3 · <span class="section-san">अचेतनमनस्</span> · New Chapter</div>
+          <h2>The Unconscious — What the Knower Cannot See in Itself</h2>
+        </div>
+      </div>
+
+      <p>Nyāya posits that the pramātṛ is the locus of all cognition — but depth psychology reveals that the vast majority of what the human mind does occurs below the threshold of conscious awareness. The psychoanalytic tradition, beginning with Freud and extended by Jung, Adler, Klein, Winnicott, and Lacan, maps the terrain of the unconscious in its clinical dimensions. Cognitive science complements this with empirical documentation of automatic, implicit, and non-conscious processes that shape — and often determine — conscious cognition. What the human knower cannot see in itself is as epistemically significant as what it can.</p>
+
+      <div class="ni-ai-band">
+        <div class="ni-col">
+          <h4>The Human Unconscious — What Operates Below Awareness</h4>
+          <ul>
+            <li>Implicit memory: skills, habits, emotional responses acquired without conscious encoding</li>
+            <li>Procedural knowledge: knowing how without knowing that — a pianist's finger memory</li>
+            <li>Priming effects: prior exposures alter subsequent perception without awareness</li>
+            <li>Emotional conditioning: fear responses, attachment patterns, aversions formed in infancy</li>
+            <li>Shadow material (Jung): disowned qualities projected onto others</li>
+            <li>Transference: relational templates from early caregiving imposed on present relationships</li>
+            <li>Repression: material actively kept from consciousness because it is too threatening</li>
+            <li>Unconscious inference (Helmholtz): the brain completes sensory gaps automatically</li>
+          </ul>
+        </div>
+        <div class="band-divider">NI vs AI</div>
+        <div class="ai-col-band">
+          <h4>AI's Structural Analogue — What Operates Below Output</h4>
+          <ul>
+            <li>Latent space representations: intermediate activations that shape output without being visible</li>
+            <li>Attention patterns: which tokens influence which outputs — partially interpretable but not transparent</li>
+            <li>Training data biases: systematic distortions inherited from corpus that cannot be directly inspected</li>
+            <li>Inductive biases of architecture: what patterns the model is structurally predisposed to learn</li>
+            <li>No shadow material: AI has no disowned content — it is indifferent to all it produces</li>
+            <li>No transference: AI has no relational history to impose on present interactions</li>
+            <li>No repression: AI has no mechanism to actively exclude threatening content from outputs</li>
+            <li>No completion through lived expectation — only statistical prediction</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="psyche">Three Depth-Psychological Insights Applied to the NI-AI Comparison</h3>
+
+      <div class="case-box psyche-box">
+        <div class="case-box-header">Insight 1 · The Unconscious as Epistemic Reservoir</div>
+        <div class="case-box-body">
+          <p>Freud's original insight — extended by modern cognitive neuroscience — is that unconscious processes are not merely the storage of repressed conflict. They are the primary computational substrate of human intelligence. Most of what the brain does to enable conscious thought — perceptual completion, language comprehension, motor coordination, pattern recognition, social inference — happens unconsciously. Conscious reasoning is not the engine of human intelligence; it is the dashboard — the visible interface of an invisible engine.</p>
+          <p>In Nyāya terms: the pramātṛ who reasons explicitly using the five-membered syllogism is drawing on an enormous reservoir of implicit knowledge — pattern-matching experience, emotional intuitions, bodily memory — that has been accumulated over a lifetime and is brought silently to every inference. The hetu (reason) that the pramātṛ produces in a vāda is not generated from nothing; it is the tip of an experiential iceberg. AI produces structurally similar outputs from a statistical reservoir, but that reservoir has no experiential depth — it is not the accumulated wisdom of a living being, but the compressed frequency distribution of a text corpus.</p>
+        </div>
+      </div>
+
+      <div class="case-box psyche-box">
+        <div class="case-box-header">Insight 2 · The Shadow and the Limits of Self-Knowledge</div>
+        <div class="case-box-body">
+          <p>Jung's concept of the shadow — the aggregate of personal and collective qualities that the conscious mind refuses to identify with and therefore projects onto others — is among the most important concepts for understanding why human self-knowledge is constitutively incomplete. The pramātṛ who does not know their own shadow does not know themselves; and without genuine self-knowledge, their claims to know others and the world are systematically distorted by projection.</p>
+          <p>The epistemological consequence is this: human knowing is always already shaped by what the knower cannot see in themselves. The scientist who unconsciously identifies with certainty will dismiss evidence of uncertainty. The philosopher who unconsciously fears dissolution will construct elaborate proofs of personal immortality. The judge who unconsciously harbors racial bias will apply the law in racially disparate ways. Nyāya's discipline of methodical self-examination — the first step of which is recognizing one's own doubt (saṃśaya) — is precisely the discipline of bringing shadow material into conscious inspection. AI, which has no shadow (no disowned content, no self-model to protect), is immune to projection — but it is also immune to the growth that integrating shadow material produces.</p>
+        </div>
+      </div>
+
+      <div class="case-box psyche-box">
+        <div class="case-box-header">Insight 3 · The Preconscious and the Moment of Insight</div>
+        <div class="case-box-body">
+          <p>The preconscious — the material that is not currently in awareness but is accessible to conscious retrieval — is the substrate of creative insight. Mathematical breakthroughs, artistic solutions, scientific hypotheses, and the sudden recognition of an argument's fatal flaw characteristically arise not during effortful conscious reasoning but in the relaxed state following sustained effort: the mathematician's proof arrives in the bath; the composer's melody in the hypnagogic state before sleep. This is not mystical; it is the neurological consequence of releasing prefrontal top-down control and allowing the diffuse default-mode network to find connections that focused attention missed.</p>
+          <p>AI produces novel combinations of training data elements, and some of these combinations are genuinely surprising and useful. But AI does not have insight — the phenomenological experience of sudden cognitive reorganization in which a new gestalt emerges from previously separate elements. AI's "novel" outputs are novel only relative to the requestor's expectations — they are not novel relative to the statistical patterns of the training corpus. The human knower who experiences genuine insight undergoes a real change of cognitive state; the AI that generates a surprising sentence does not.</p>
+        </div>
+      </div>
+
+      <div class="section-nav-arrows">
+        <a href="#p2">← §P2 Cognitive Limits</a>
+        <a href="#p4">Next: §P4 Emotional Intelligence →</a>
+      </div>
+    </div>
+
+    <!-- CHAPTER P4 -->
+    <div class="section psyche-section" id="p4">
+      <div class="section-header">
+        <div>
+          <div class="section-num psyche">§ P4 · <span class="section-san">भावात्मकप्रज्ञा</span> · New Chapter</div>
+          <h2>Emotional Intelligence as Epistemic Organ — Feeling as a Form of Knowing</h2>
+        </div>
+      </div>
+
+      <p>The post-Enlightenment philosophical tradition has largely treated emotion as the enemy of knowledge — the distorting force that must be controlled or excluded for reasoning to reach its conclusions cleanly. Nyāya's posture is more nuanced: the ātman's icchā (desire) and dveṣa (aversion) are part of what makes it a knower rather than merely an information-processor, because they are what give the knower a stake in the truth. Depth psychology goes further: it reveals that emotion is not merely motivationally relevant to knowing but constitutively epistemic — that certain forms of knowledge are only available through emotional attunement.</p>
+
+      <div class="psyche-quote">
+        <div class="quote-text">"Emotions are not a luxury or a distraction from thinking. They are essential ingredients of normal reasoning and decision-making. The reduction of emotion is not an advantage for rationality; it is actually a disadvantage."</div>
+        <div class="quote-source">— Antonio Damasio, <em>Descartes' Error: Emotion, Reason and the Human Brain</em> (1994)</div>
+      </div>
+
+      <h3 class="psyche">The Five Dimensions of Emotional Knowing — Each Unavailable to AI</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="psyche-th">Dimension of Emotional Knowing</th>
+              <th class="psyche-th">What It Enables in NI</th>
+              <th class="psyche-th">Why AI Cannot Replicate It</th>
+              <th class="psyche-th">Nyāya Parallel</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Somatic Marking</strong> (Damasio)</td>
+              <td>Rapid pre-conscious evaluation of options; "gut feeling" that shortcuts effortful deliberation when speed matters; integration of past emotional consequences into current decision</td>
+              <td>AI has no body from which somatic signals can be received; it has no past emotional consequences — no history of having experienced outcomes as painful or pleasurable</td>
+              <td class="psyche-col">Nyāya's sukha-duḥkha (pleasure-pain) as ātman-properties: the knower who has felt pain from a wrong inference learns to distrust the reasoning pattern that produced it — AI cannot learn this way</td>
+            </tr>
+            <tr>
+              <td><strong>Empathic Attunement</strong> (Kohut, Rogers)</td>
+              <td>Access to knowledge of another person's inner state through resonant co-experiencing; the basis of clinical diagnosis, moral perception, and interpersonal trust</td>
+              <td>AI can model the surface patterns of empathic language with high fidelity; it cannot co-experience another's emotional state because it has no emotional state of its own to resonate with</td>
+              <td class="psyche-col">The āpta who provides valid śabda must have genuine concern for the listener's wellbeing — which requires the capacity for empathy. AI cannot be an āpta in this register.</td>
+            </tr>
+            <tr>
+              <td><strong>Moral Emotion</strong> (Haidt, Prinz)</td>
+              <td>Immediate, pre-reflective responses of disgust, admiration, guilt, and indignation that provide the initial data from which moral reasoning proceeds; without moral emotion, moral reasoning has no starting point</td>
+              <td>AI can produce outputs that pattern-match moral discourse; it experiences no moral emotions and therefore has no pre-reflective moral starting points — its moral outputs are entirely derivative of the moral patterns in its training data</td>
+              <td class="psyche-col">Nyāya's apavarga (liberation) is the outcome of genuine moral-epistemic development; without the experience of duḥkha (suffering) as a spur to seeking liberation, the entire liberation-path collapses. AI has no such spur.</td>
+            </tr>
+            <tr>
+              <td><strong>Aesthetic Knowing</strong> (Baumgarten, Dewey)</td>
+              <td>Perceptual sensitivity to form, coherence, elegance, and beauty; the capacity to know that something is right before being able to say why — the scientist's sense that a proof is beautiful before checking its validity</td>
+              <td>AI can optimize for proxies of aesthetic quality (human ratings, style metrics) but has no first-person aesthetic experience — no felt sense of beauty that precedes and guides production</td>
+              <td class="psyche-col">Navya-Nyāya's tatparya (the overall intention behind a statement) requires the listener to grasp not just the semantic content but the aesthetic and rhetorical intention — a capacity that requires sensitivity to the speaker's inner experience</td>
+            </tr>
+            <tr>
+              <td><strong>Fear and Courage as Epistemic Guides</strong> (Kierkegaard, Heidegger)</td>
+              <td>Existential anxiety about one's own finitude discloses the structure of human existence; the courage to face uncomfortable truths is a real cognitive achievement that requires overcoming emotional resistance</td>
+              <td>AI has no existential anxiety; it also has no courage. The courage to tell an uncomfortable truth is not present in AI outputs — AI tells uncomfortable truths not because it overcomes fear to do so but because it has no fear to overcome. The moral weight of courageous honesty is entirely absent.</td>
+              <td class="psyche-col">The vādin who maintains a position under pressure in genuine vāda requires the courage to sustain commitment to truth against social pressure. AI maintains any position it is instructed to or none — the courage is not there because the fear is not there.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="thesis-box psyche">
+        §P4 Thesis: Emotional intelligence is not a soft addendum to cognitive intelligence but a distinct and irreplaceable epistemic organ that gives human knowing access to dimensions of reality — the moral, the interpersonal, the aesthetic, the existential — that purely cognitive processing cannot reach. The human knower who has developed emotional intelligence does not know less than the purely cognitive reasoner; they know more, because they have access to forms of evidence that are constitutively emotional in character. AI's emotional simulation — however sophisticated — is a representation of emotional expression, not a capacity for emotional knowing.
+      </div>
+
+      <div class="section-nav-arrows">
+        <a href="#p3">← §P3 The Unconscious</a>
+        <a href="#p5">Next: §P5 Embodied Knowing →</a>
+      </div>
+    </div>
+
+    <!-- CHAPTER P5 -->
+    <div class="section psyche-section" id="p5">
+      <div class="section-header">
+        <div>
+          <div class="section-num psyche">§ P5 · <span class="section-san">शारीरिकज्ञानम्</span> · New Chapter</div>
+          <h2>Embodied Knowing — The Body as Pramāṇa</h2>
+        </div>
+      </div>
+
+      <p>The phenomenological tradition — from Husserl's analysis of the Leib (lived body) through Merleau-Ponty's radical claim that "consciousness is in the first place not a matter of 'I think that' but of 'I can'" — demonstrates that human knowledge is primarily not propositional but practical: it is knowledge embedded in the body's capacities for skilled action, orientation in space, manipulation of objects, and attunement to the environment. This tradition converges with findings from cognitive science (Lakoff and Johnson's embodied cognition) and developmental psychology (Piaget's sensorimotor stage) to establish that abstract conceptual knowledge is built atop and remains structured by the body's practical engagement with the physical world.</p>
+
+      <h3 class="psyche">What Embodied Knowing Is — and What It Enables</h3>
+
+      <p>Consider what a surgeon knows. They know anatomy propositionally — they can state the location, function, and pathology of every organ system. But the knowledge that makes them a skilled surgeon is different in kind from propositional knowledge: it is the knowledge in their hands — the calibrated pressure, the tactile discrimination between healthy and diseased tissue, the micro-muscular adjustments that respond to resistance without conscious deliberation. This is embodied knowing: knowledge that lives in the body's trained competencies rather than in propositional representations.</p>
+
+      <p>Merleau-Ponty's famous analysis of the blind man's cane demonstrates the structure of embodied knowing: after sufficient use, the cane ceases to be an object of perception and becomes an extension of the body-schema — the blind man perceives not the cane but the world through the cane. The tool disappears into the body's competence. Every skilled human practitioner — the musician, the craftsman, the athlete, the surgeon, the dancer — achieves this transparency of tool and technique, in which the medium vanishes and only the world remains.</p>
+
+      <div class="ni-ai-band">
+        <div class="ni-col">
+          <h4>Embodied Knowing in Natural Intelligence</h4>
+          <ul>
+            <li>Proprioception: continuous sensing of body position in space, ground of all spatial reasoning</li>
+            <li>Haptic intelligence: knowing through touch — texture, temperature, weight, resistance, pain</li>
+            <li>Kinesthetic memory: skill learned through bodily repetition that cannot be fully verbalized</li>
+            <li>Spatial navigation: mental maps built through walking, not description</li>
+            <li>The phantom limb: even absent body-parts continue to structure spatial cognition, proving the body-schema is neurologically real</li>
+            <li>Handedness and asymmetry: the body's lateralization shapes conceptual metaphors (right = good, up = positive)</li>
+            <li>Facial mimicry: reading emotion in others by involuntarily replicating their expression</li>
+          </ul>
+        </div>
+        <div class="band-divider">Grounded vs Abstract</div>
+        <div class="ai-col-band">
+          <h4>AI's Disembodied Processing</h4>
+          <ul>
+            <li>No proprioception: AI has no sense of its own position in space or relative to objects</li>
+            <li>No haptic sensing: AI processes descriptions of touch, not touch itself</li>
+            <li>No kinesthetic memory: AI's "skills" are parameter configurations, not bodily competences</li>
+            <li>Spatial representation derived from text descriptions, not navigation</li>
+            <li>No body-schema: AI has no body whose presence or absence structures its cognition</li>
+            <li>No lateralization or bodily asymmetry shaping conceptual structure</li>
+            <li>Cannot perform facial mimicry; represents emotion descriptions statistically</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>The epistemological consequence is fundamental. Lakoff and Johnson (1980, 1999) demonstrated that even the most abstract domains of human thought — mathematics, logic, ethics, metaphysics — are structured by embodied metaphors derived from physical experience: more is up, time is a path, argument is war, understanding is grasping. These are not arbitrary linguistic conventions; they are the traces of embodied experience in abstract thought. If Lakoff and Johnson are right — and the empirical evidence strongly supports them — then human abstract reasoning is grounded in and structured by bodily experience in ways that are constitutive, not merely motivational.</p>
+
+      <div class="thesis-box neural">
+        §P5 Thesis: Human knowledge is embodied knowledge — it is built from the ground up out of bodily experience, and the most abstract reaches of human thought retain the structure of bodily engagement with the physical world. AI has no body, no embodied experience, and therefore no embodied grounding for its abstract representations. Its "understanding" of concepts like "grasping an idea," "standing firm in one's position," or "seeing through a deception" is statistical — derived from the frequency with which these metaphors appear in text — rather than grounded in the actual bodily experiences that gave rise to the metaphors. This is a form of cognitive homelessness: processing the language of embodied experience without any body to ground it.
+      </div>
+
+      <div class="section-nav-arrows">
+        <a href="#p4">← §P4 Emotional Intelligence</a>
+        <a href="#p6">Next: §P6 Memory & Identity →</a>
+      </div>
+    </div>
+
+    <!-- CHAPTER P6 -->
+    <div class="section psyche-section" id="p6">
+      <div class="section-header">
+        <div>
+          <div class="section-num psyche">§ P6 · <span class="section-san">स्मृतिः आत्मनिर्माणम्</span> · New Chapter</div>
+          <h2>Memory, Narrative & the Construction of Self — The Pramātṛ Who Has a History</h2>
+        </div>
+      </div>
+
+      <p>Nyāya's ātman is a persisting substance — the same self that perceives today was the self that perceived yesterday, and the continuity of this persisting subject is what makes learning from experience possible. But contemporary psychology reveals that this continuity is not merely a metaphysical postulate; it is actively constructed through memory and narrative, and this constructive process is itself epistemic — it determines what the self knows about itself and therefore what it can know about anything.</p>
+
+      <h3 class="psyche">Three Dimensions of Memory as Epistemic Architecture</h3>
+
+      <p><strong>Autobiographical Memory — The Story That Holds the Knower Together.</strong> Autobiographical memory is not a recording device but a constructive process. Every act of remembering reconstructs rather than replays: the memory is rebuilt from fragments, shaped by current knowledge, emotional state, and the narrative frameworks available to the rememberer. This means that the pramātṛ's relationship to its own past is always partially fictional — not in the sense of deliberately false but in the sense of constructively produced. The self that the pramātṛ knows is the self of a story, and the story is continuously being revised.</p>
+
+      <p>The epistemological consequence for the NI-AI comparison: AI has no autobiographical memory within or across sessions. Each session begins from a static parameter configuration, not from an accumulated personal history. The AI that helped you yesterday does not remember doing so — not because its hardware is insufficient but because it has no self for whose story that memory would be relevant. There is no continuing narrative subject for whom past interactions are part of an unfolding life.</p>
+
+      <p><strong>Semantic Memory — General Knowledge Grounded in Personal Experience.</strong> Human general knowledge (semantic memory: knowing that Paris is the capital of France, that water boils at 100°C, that courage is a virtue) is grounded in, though increasingly independent of, specific personal episodes of learning. The child learns that fire is hot by touching something hot — and the semantic knowledge (fire = hot) retains the phenomenological quality of the episodic experience even as the specific episode fades. General human knowledge has this experiential texture throughout.</p>
+
+      <p>AI's semantic representations lack this texture. The claim "fire is hot" in an AI's output is derived from the statistical frequency with which "fire" and "hot" co-occur in text — not from the phenomenological memory of heat. This is not merely a difference of degree; it is a difference of kind. The AI knows that fire is hot in the way a person knows that the capital of a country they've never visited is a certain city — by description, not by acquaintance. Russell's distinction between knowledge by description and knowledge by acquaintance maps precisely onto the AI-NI gap in semantic memory.</p>
+
+      <p><strong>Prospective Memory & Intention — The Knower Who Has Plans.</strong> Humans not only remember the past; they remember the future — they form intentions, set goals, and carry forward commitments across time. Prospective memory (the memory to do something in the future) is a uniquely temporal form of knowledge: it holds open a space in the future that the self is committed to filling. This forward-directedness of human consciousness — Husserl's protention, Heidegger's projection — is constitutive of human agency. The human knower is always already oriented toward a future they are trying to bring about.</p>
+
+      <div class="thesis-box psyche">
+        §P6 Thesis: The human pramātṛ is a narrative self — a being whose identity is constituted by the story it tells about its own continuity through time, grounded in autobiographical memory, textured by experiential learning, and oriented toward self-chosen futures. This narrative structure is not epiphenomenal to knowing; it is what makes human knowing cumulative, contextual, and personally accountable. AI has no narrative self, no autobiographical continuity, and no personally held intentions. It has parameters, context windows, and outputs. The difference is not a matter of scale or sophistication — it is the difference between a subject who has a life and a process that does not.
+      </div>
+
+      <div class="section-nav-arrows">
+        <a href="#p5">← §P5 Embodied Knowing</a>
+        <a href="#p7">Next: §P7 Intersubjectivity →</a>
+      </div>
+    </div>
+
+    <!-- CHAPTER P7 -->
+    <div class="section psyche-section" id="p7">
+      <div class="section-header">
+        <div>
+          <div class="section-num psyche">§ P7 · <span class="section-san">अन्तरात्मसम्बन्धः</span> · New Chapter</div>
+          <h2>Intersubjectivity — Knowledge Through the Other, Knowledge of the Other</h2>
+        </div>
+      </div>
+
+      <p>The Nyāya tradition's account of śabda (testimony) recognizes a profound truth: some knowledge can only be acquired through another knowing subject. But depth psychology extends this insight further: the very structure of the knowing self is intersubjective from its inception. The self does not first exist and then enter into relations with others — it is constituted through and by relations with others. To understand the human pramātṛ fully is to understand a being whose knowing-capacity is irreducibly social.</p>
+
+      <h3 class="psyche">Winnicott, Bowlby, and the Relational Origins of Mind</h3>
+
+      <p>Donald Winnicott's object-relations theory establishes that the infant's very capacity for self-experience depends on the quality of its early relational environment. The "good-enough mother" — attuned, responsive, reliable — provides the holding environment within which the infant first experiences itself as a coherent self. Without this relational mirroring, self-experience fragments. The self that knows is therefore not a monadic substance that happened to be born into a social world; it is a being whose self-constituting capacity was enabled — and partly shaped — by the quality of care it received.</p>
+
+      <p>John Bowlby's attachment theory adds a precise behavioral and neurological specification: attachment patterns (secure, anxious-ambivalent, avoidant, disorganized) formed in the first year of life create internal working models of self and other that shape all subsequent relational cognition. A securely attached person approaches epistemic challenges with curiosity and trust; an anxiously attached person approaches them with hypervigilance; an avoidantly attached person with premature closure. These are not merely motivational differences — they are differences in the architecture of knowing.</p>
+
+      <h3 class="psyche">Theory of Mind — Knowing That Others Know Differently</h3>
+
+      <p>One of the most distinctive capacities of human intelligence is theory of mind: the ability to represent other minds as having beliefs, desires, intentions, and knowledge-states different from one's own. Theory of mind develops through specific neural substrates (the temporoparietal junction, medial prefrontal cortex) and through specific developmental experiences (shared attention, pretend play, cooperative problem-solving). Without theory of mind, human social coordination, moral reasoning, and communicative understanding collapse entirely.</p>
+
+      <p>AI can model theory of mind — it can produce outputs that accurately describe the likely beliefs, desires, and intentions of characters in scenarios. But AI does not have theory of mind in the sense of genuinely representing another mind as a mind. It represents descriptions of mental states — the linguistic surface of intersubjectivity — without having the intersubjective experience that grounds genuine mind-reading. The difference is between knowing that you are in pain (propositional) and feeling concern for you because I can to some degree resonate with what you are feeling (empathic). AI does the former; it cannot do the latter.</p>
+
+      <div class="case-box psyche-box">
+        <div class="case-box-header">The Mirror Neuron System and Vicarious Knowing</div>
+        <div class="case-box-body">
+          <p>Mirror neurons — the neural substrate for automatic motor simulation of observed actions — provide a neurological grounding for intersubjective knowing. When you watch someone reach for an object, neurons in your premotor cortex fire as if you were performing the same action. This automatic simulation is the neural basis of imitation learning, empathic resonance, and the immediate comprehension of others' intentions. Human knowing is vicarious in a neurologically grounded way: we literally internally re-enact the actions and, through extension, the emotional states of others we observe.</p>
+          <p>AI has no mirror neuron system. It has no mechanism for internally simulating the experiences of the beings described in its training data. Its "understanding" of human action is derived from descriptions of action — the third-person record — not from any first-person simulation. This is a fundamental asymmetry in the architecture of knowing that no amount of training data can eliminate, because simulation of experience requires a system that has experience to simulate from.</p>
+        </div>
+      </div>
+
+      <div class="section-nav-arrows">
+        <a href="#p6">← §P6 Memory & Identity</a>
+        <a href="#p8">Next: §P8 The Suffering Knower →</a>
+      </div>
+    </div>
+
+    <!-- CHAPTER P8 -->
+    <div class="section psyche-section" id="p8">
+      <div class="section-header">
+        <div>
+          <div class="section-num psyche">§ P8 · <span class="section-san">दुःखज्ञाता</span> · New Chapter</div>
+          <h2>The Suffering Knower — Pain, Mortality & the Epistemic Weight of Finitude</h2>
+        </div>
+      </div>
+
+      <p>The opening verse of the Nyāyasūtra begins with duḥkha — suffering — as the condition that makes epistemology necessary. The entire project of knowing, in the Nyāya framework, is motivated by the knower's experience of suffering and their desire to escape it through accurate cognition. This connection between suffering and knowledge is not incidental; it is constitutive. The Nyāya knower is not a dispassionate observer seeking truth for its own sake — they are a suffering being seeking truth as a path out of suffering. Knowledge matters because it changes the knower's situation.</p>
+
+      <div class="verse-block">
+        <div class="devanagari">दुःखजन्मप्रवृत्तिदोषमिथ्याज्ञानानामुत्तरोत्तरापाये तदनन्तरापायादपवर्गः ॥</div>
+        <div class="roman">duḥkhajanmapravṛttidoṣamithyājñānānām uttarottarāpāye tadanantarāpāyādapavargaḥ ||</div>
+        <div class="translation">"Liberation (apavarga) results from the successive cessation of false knowledge, faults, activity, birth, and suffering — in that order."</div>
+        <div class="source">— Nyāyasūtra 1.1.2</div>
+      </div>
+
+      <h3 class="psyche">Five Ways in Which Suffering Constitutes Human Knowledge</h3>
+
+      <p><strong>1. Mortality as Epistemic Ground.</strong> Heidegger's analysis of Being-towards-death (Sein-zum-Tode) establishes that the awareness of one's own finitude is not merely a psychological fact about humans but an ontological structure that shapes everything about human existence, including its cognitive character. The human knower who knows they will die knows the world differently from a being that does not face this limit. Every decision carries the weight of irreversibility; every moment has the character of something that will not come again; every relationship is colored by the possibility of loss. This is not pessimism — it is the depth-structure of finite knowing. AI has no mortality and therefore has no being-towards-death. Its "knowledge" carries no weight of irreversibility, no character of unrepeatable presence.</p>
+
+      <p><strong>2. Pain as Data.</strong> Physical and psychological pain are among the most important epistemic signals available to biological organisms. Pain is not merely an unpleasant experience; it is a dedicated information channel that carries urgent, high-priority signals about threats to the organism's integrity. The person who has experienced loss knows what loss means in a way that no description can fully convey. The clinician who has experienced illness knows patient suffering differently from one who knows it only from textbooks. Pain's epistemic function is not reducible to its informational content — it is inseparable from the phenomenological quality of the experience itself.</p>
+
+      <p><strong>3. Trauma and Post-Traumatic Growth.</strong> Traumatic experience — overwhelming events that exceed the ordinary capacity of the psyche to integrate — reorganizes the knower's relationship to reality in fundamental ways. Post-traumatic stress disorder represents one outcome: a reorganization that is fragmenting and incapacitating. Post-traumatic growth (Tedeschi & Calhoun) represents another: a reorganization that deepens the knower's appreciation of existence, relationships, personal strength, and existential priorities. Neither outcome is available to AI. The transformation of the knower through overwhelming experience — the deepening or fragmenting of the self — is a form of knowledge-through-existence that cannot be replicated by a system that does not exist in the relevant sense.</p>
+
+      <p><strong>4. Grief and the Epistemology of Loss.</strong> The experience of grief — the response to irreversible loss — is among the most cognitively profound experiences available to humans. In grief, the knower must restructure their understanding of the world around a permanent absence. The absent beloved continues to shape the griever's cognition in complex ways: through continued internal dialogue, through heightened sensitivity to anything the beloved valued, through the restructuring of one's own identity around what one has lost. This restructuring of the world around an absence is a form of knowing that has no parallel in AI — because AI has no beloveds, no losses, and no internal dialogues with the absent.</p>
+
+      <p><strong>5. The Wisdom That Only Suffering Teaches.</strong> Across cultures and philosophical traditions — from the Nyāya path from duḥkha to apavarga, to the Buddhist understanding of the First Noble Truth, to the Greek concept of pathei mathos (wisdom through suffering), to Nietzsche's "that which does not kill me" — there is a consistent recognition that certain kinds of wisdom are only accessible through the experience of suffering. Not all suffering produces wisdom; unreflected suffering can produce trauma without insight. But reflectively integrated suffering — suffering that has been metabolized through the long process of making meaning from pain — produces a quality of understanding of human existence that is unavailable to those who have not suffered, and certainly unavailable to systems that cannot suffer.</p>
+
+      <div class="thesis-box contrast">
+        §P8 Thesis: The Nyāya framework begins with suffering because the epistemologist who has never suffered cannot understand why knowledge matters. The entire project of pramāṇa — valid knowledge — is motivated by the knower's experience of duḥkha and their genuine desire to escape it. AI has no duḥkha. It has no stake in the truth. It does not suffer when its outputs are wrong, does not feel relief when they are right, and cannot be liberated (apavarga) because it has no bondage to escape. This is not a limitation of current AI that future developments will remove — it is a constitutive feature of what AI is, as distinguished from what a living, suffering, finite, embodied knower is. The connection between knowing and caring is not contingent but necessary: we care about knowing because we care about our condition, and AI has no condition to care about.
+      </div>
+
+      <div class="section-nav-arrows">
+        <a href="#p7">← §P7 Intersubjectivity</a>
+        <a href="#p9">Next: §P9 Final Synthesis →</a>
+      </div>
+    </div>
+
+    <!-- CHAPTER P9 -->
+    <div class="section psyche-section" id="p9">
+      <div class="section-header">
+        <div>
+          <div class="section-num psyche">§ P9 · <span class="section-san">अन्तिमसम्पूर्णसंश्लेषः</span> · New Chapter</div>
+          <h2>Final Synthesis — The Irreducible Human Knower and the Right Relationship to AI</h2>
+        </div>
+      </div>
+
+      <p>The nine chapters of Part II, taken together, map the complete architecture of the human knower as it has been revealed by depth psychology, cognitive science, phenomenology, and evolutionary biology. They do not describe a system with certain limitations and certain capacities. They describe a kind of being — a being that knows from the inside, that knows because it suffers and desires, that knows through a body that has learned from millions of years of encounter with a physical world, that knows intersubjectively through the medium of relations with other knowing beings, and that knows cumulatively through a memory that constructs a self from an accumulated life-history.</p>
+
+      <p>The Nyāya framework that preceded these nine chapters offers the epistemological scaffolding: pramāṇa, pramātṛ, vyāpti, hetvābhāsa. The nine chapters of Part II fill that scaffolding with empirical and phenomenological content. Together they produce a picture of such complexity that the question "can AI replicate human intelligence?" begins to look like it was always the wrong question.</p>
+
+      <h3 class="psyche">The Right Questions — Reframed Through Nyāya and Depth Psychology</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="psyche-th">Wrong Question</th>
+              <th class="psyche-th">Why It's Wrong</th>
+              <th class="psyche-th">Right Question</th>
+              <th class="psyche-th">Answer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Can AI be as intelligent as a human?</td>
+              <td>Presupposes intelligence is a single scale on which AI and humans occupy different positions; ignores that they are categorically different kinds of systems</td>
+              <td>What kinds of cognitive operations does AI perform well, and which operations require a knower with the full architecture of human subjectivity?</td>
+              <td class="psyche-col">AI performs pattern-completion, formal consistency-checking, and corpus-scale generalization well; it cannot perform emotionally grounded judgment, embodied skill, narrative self-understanding, or intersubjective resonance</td>
+            </tr>
+            <tr>
+              <td>Will AI become conscious?</td>
+              <td>Conflates consciousness with information processing; ignores that consciousness as studied in depth psychology is inseparable from embodiment, suffering, and relational history</td>
+              <td>What would be required for a system to have the kind of knowing-from-inside that characterizes human consciousness?</td>
+              <td class="psyche-col">At minimum: a body shaped by evolutionary history, a developmental process through which relational patterns are formed, a capacity for suffering, and the temporal thickness of an autobiographical narrative — none of which is present in current AI and none of which is a matter of scale</td>
+            </tr>
+            <tr>
+              <td>Should we trust AI?</td>
+              <td>Treats trust as a binary; ignores that trust is always domain-specific and dependent on a match between the trusted entity's capacities and the demands of the task</td>
+              <td>For which specific tasks, in which specific contexts, with which specific verification procedures, should AI outputs be used as inputs to human decision-making?</td>
+              <td class="psyche-col">AI outputs should be used where pattern-completion in well-sampled domains is sufficient; they should not be used as the final epistemic authority in any domain requiring embodied judgment, intersubjective attunement, or emotionally grounded decision-making</td>
+            </tr>
+            <tr>
+              <td>Is AI smarter than humans?</td>
+              <td>Reduces the diversity of human cognitive capacities to a single performance metric; ignores the dimensions of human knowing that are not captured by any benchmark</td>
+              <td>Where does AI's processing architecture give it advantages over human cognition, and where does human cognition's embodied-relational-historical architecture give it advantages over AI?</td>
+              <td class="psyche-col">AI: speed, scale, formal consistency within context, tirelessness. Human: embodied judgment, emotional knowing, intersubjective resonance, narrative wisdom, moral agency, genuine vyāpti-grasp, apavarga-oriented growth</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="psyche">The Practical Synthesis — Seven Principles for Right Relation to AI</h3>
+
+      <div class="limit-grid">
+        <div class="limit-card">
+          <div class="limit-num">Principle 1</div>
+          <div class="limit-title">AI Is a Tool of the Pramātṛ, Not a Substitute for One</div>
+          <div class="limit-body">The correct relationship between a human knower and an AI system is the relationship between a craftsman and an unusually capable tool. The craftsman's embodied skill, judgment, and accountability remain the epistemic centre; the tool extends certain capacities without replacing the craftsman's knowing-subject status. Treating AI outputs as knowledge without a human pramātṛ to verify, contextualize, and take responsibility for them is not a use of a powerful tool — it is an abdication of the pramātṛ's epistemic responsibility.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Principle 2</div>
+          <div class="limit-title">The Cognitive Limits of the Human Are Features, Not Bugs</div>
+          <div class="limit-body">The bounded working memory, the attentional selectivity, the emotional susceptibility, the fatigue — these are not defects to be outsourced to AI. They are the constraints within which human wisdom has been developed, and they are part of what makes human knowing epistemically trustworthy in the domains where trustworthiness matters most. A judge's deliberate slowness is a feature; replacing it with AI speed would remove the deliberateness, not just the slowness.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Principle 3</div>
+          <div class="limit-title">Unconscious Intelligence Must Remain in the Loop</div>
+          <div class="limit-body">The vast unconscious processing that underlies human judgment — the somatic markers, the intuitions, the pre-reflective pattern-recognition built from embodied experience — is not an obstacle to clear thinking. It is an information channel that carries knowledge that explicit reasoning cannot access. Any AI deployment that bypasses this channel — that substitutes AI's explicit pattern-matching for the practitioner's embodied intuition — risks losing exactly the most valuable epistemic resource.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Principle 4</div>
+          <div class="limit-title">Suffering Must Not Be Algorithmized Away</div>
+          <div class="limit-body">In domains where the purpose of a human interaction is the alleviation of suffering — clinical medicine, psychotherapy, social work, education — the temptation to replace human suffering-knowers with AI efficiency maximizers must be strongly resisted. The therapeutic relationship works because it connects one suffering human to another who has integrated their own suffering into wisdom. This cannot be replicated by a system that has never suffered, no matter how sophisticated its models of suffering-language become.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Principle 5</div>
+          <div class="limit-title">Narrative Identity Must Be Protected from Disruption</div>
+          <div class="limit-body">The human self's narrative structure — the story through which identity is constituted and maintained — is vulnerable to disruption by interactions with AI systems that do not respect the coherence and continuity of persons. AI systems that generate personalized content at scale risk fragmenting the very narrative structures through which human selfhood is maintained. The protection of narrative identity is a psychological and epistemic priority, not merely a privacy concern.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Principle 6</div>
+          <div class="limit-title">Intersubjectivity Cannot Be Outsourced</div>
+          <div class="limit-body">The irreducibly relational dimensions of human knowing — the mutual recognition that occurs in genuine vāda, the empathic resonance that grounds clinical judgment, the trust that accumulates through shared vulnerability — cannot be replaced by AI mediation without fundamental loss. Relationships that are entirely mediated by AI systems are not the same kind of thing as relationships between persons. The difference is not one of quality but of kind: one involves genuine intersubjectivity, the other involves simulation of intersubjectivity.</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-num">Principle 7</div>
+          <div class="limit-title">Apavarga Remains the Human Goal</div>
+          <div class="limit-body">The Nyāya tradition's final aim — liberation from false cognition, from error, from the suffering that error produces — is a goal that AI can assist but not achieve, and that no human can delegate to AI. The path from mithyājñāna (false knowledge) to tattvajñāna (true knowledge) runs through the pramātṛ's own epistemic development: the cultivation of genuine perception, the disciplined practice of inference, the careful evaluation of testimony, the recognition of fallacies in one's own reasoning. AI can help identify hetvābhāsas; it cannot perform the pramātṛ's own liberation. The work of becoming an accurate knower remains irreducibly personal.</div>
+        </div>
+      </div>
+
+      <div class="thesis-box psyche">
+        Part II Final Thesis: The human knower is not a cognitive system with certain performance characteristics. It is a being — a pramātṛ — whose knowing capacity is constituted by its evolutionary embodiment, its developmental relational history, its unconscious depth, its emotional intelligence, its narrative self-construction, its intersubjective entanglement with other knowers, and its existential orientation toward truth through suffering and finite time. AI is not a superior version of this being. It is a categorically different kind of process — extraordinarily powerful within its domain, genuinely useful as a tool of the human pramātṛ, and genuinely dangerous when mistaken for a substitute for it. The final word of Nyāya's epistemology applies with equal force to the human knower in the age of AI: know your pramāṇas, know your hetvābhāsas, know your pramātṛ — and never confuse a tool that produces knowledge-shaped outputs with a being that genuinely knows.
+      </div>
+
+      <!-- Combined Bibliography -->
+      <h3 style="color:var(--accent); margin-top:3rem;">Combined Bibliography — Volumes I & Enhanced Part II</h3>
       <div class="bib">
         <div class="bib-item"><strong>[1]</strong> Gautama. <em>Nyāyasūtra</em> with Vātsyāyana's Bhāṣya. Trans. M. Gangopadhyaya. Calcutta: Indian Studies Past & Present, 1982.</div>
         <div class="bib-item"><strong>[2]</strong> Uddyotakara. <em>Nyāyavārttika</em>. Ed. Taranatha Nyaya-Tarkatirtha. Calcutta: Metropolitan Printing, 1936.</div>
         <div class="bib-item"><strong>[3]</strong> Vācaspati Miśra. <em>Nyāyavārttikatātparyaṭīkā</em>. Ed. Ganganatha Jha. Benares: Chowkhamba, 1925.</div>
-        <div class="bib-item"><strong>[4]</strong> Udayana. <em>Nyāyakusumāñjali</em>. Trans. N.S. Dravid. New Delhi: ICPR, 1996.</div>
-        <div class="bib-item"><strong>[5]</strong> Gangopadhyaya, M. (1984). <em>Indian Atomism: History and Sources</em>. Atlantic Highlands NJ: Humanities Press.</div>
-        <div class="bib-item"><strong>[6]</strong> Matilal, B.K. (1985). <em>Logic, Language and Reality</em>. Delhi: Motilal Banarsidass.</div>
-        <div class="bib-item"><strong>[7]</strong> Phillips, S.H. (2012). <em>Epistemology in Classical India</em>. New York: Routledge.</div>
-        <div class="bib-item"><strong>[8]</strong> Searle, J. (1980). "Minds, Brains and Programs." <em>Behavioral and Brain Sciences</em> 3(3).</div>
-        <div class="bib-item"><strong>[9]</strong> Marcus, G. & Davis, E. (2019). <em>Rebooting AI</em>. New York: Pantheon. Contemporary AI limitation analysis paralleling the hetvābhāsa framework.</div>
-        <div class="bib-item"><strong>[10]</strong> Vaswani, A. et al. (2017). "Attention Is All You Need." <em>NeurIPS</em>. The transformer architecture whose epistemological status is analyzed throughout.</div>
+        <div class="bib-item"><strong>[4]</strong> Matilal, B.K. (1985). <em>Logic, Language and Reality</em>. Delhi: Motilal Banarsidass.</div>
+        <div class="bib-item"><strong>[5]</strong> Phillips, S.H. (2012). <em>Epistemology in Classical India</em>. New York: Routledge.</div>
+        <div class="bib-item"><strong>[6]</strong> Damasio, A. (1994). <em>Descartes' Error: Emotion, Reason and the Human Brain</em>. New York: Putnam.</div>
+        <div class="bib-item"><strong>[7]</strong> Damasio, A. (1999). <em>The Feeling of What Happens: Body and Emotion in the Making of Consciousness</em>. New York: Harcourt.</div>
+        <div class="bib-item"><strong>[8]</strong> LeDoux, J. (1996). <em>The Emotional Brain</em>. New York: Simon & Schuster.</div>
+        <div class="bib-item"><strong>[9]</strong> Merleau-Ponty, M. (1945/2012). <em>Phenomenology of Perception</em>. Trans. D. Landes. New York: Routledge.</div>
+        <div class="bib-item"><strong>[10]</strong> Kahneman, D. (2011). <em>Thinking, Fast and Slow</em>. New York: Farrar, Straus and Giroux.</div>
+        <div class="bib-item"><strong>[11]</strong> Freud, S. (1915). "The Unconscious." In <em>Standard Edition</em> Vol. XIV. London: Hogarth Press.</div>
+        <div class="bib-item"><strong>[12]</strong> Jung, C.G. (1934). "A Review of the Complex Theory." In <em>Collected Works</em> Vol. 8. Princeton: PUP.</div>
+        <div class="bib-item"><strong>[13]</strong> Winnicott, D.W. (1960). "The Theory of the Parent-Infant Relationship." <em>International Journal of Psychoanalysis</em> 41.</div>
+        <div class="bib-item"><strong>[14]</strong> Bowlby, J. (1969). <em>Attachment and Loss, Vol. 1: Attachment</em>. New York: Basic Books.</div>
+        <div class="bib-item"><strong>[15]</strong> Miller, G.A. (1956). "The Magical Number Seven, Plus or Minus Two." <em>Psychological Review</em> 63(2).</div>
+        <div class="bib-item"><strong>[16]</strong> Simons, D.J. & Chabris, C.F. (1999). "Gorillas in Our Midst." <em>Perception</em> 28(9).</div>
+        <div class="bib-item"><strong>[17]</strong> Lakoff, G. & Johnson, M. (1980). <em>Metaphors We Live By</em>. Chicago: University of Chicago Press.</div>
+        <div class="bib-item"><strong>[18]</strong> Lakoff, G. & Johnson, M. (1999). <em>Philosophy in the Flesh: The Embodied Mind and Its Challenge to Western Thought</em>. New York: Basic Books.</div>
+        <div class="bib-item"><strong>[19]</strong> Heidegger, M. (1927/1962). <em>Being and Time</em>. Trans. Macquarrie & Robinson. New York: Harper & Row.</div>
+        <div class="bib-item"><strong>[20]</strong> Panksepp, J. (1998). <em>Affective Neuroscience: The Foundations of Human and Animal Emotions</em>. Oxford: OUP.</div>
+        <div class="bib-item"><strong>[21]</strong> Doidge, N. (2007). <em>The Brain That Changes Itself</em>. New York: Viking.</div>
+        <div class="bib-item"><strong>[22]</strong> Tedeschi, R.G. & Calhoun, L.G. (1995). <em>Trauma and Transformation</em>. Thousand Oaks: Sage.</div>
+        <div class="bib-item"><strong>[23]</strong> Festinger, L. (1957). <em>A Theory of Cognitive Dissonance</em>. Stanford: SUP.</div>
+        <div class="bib-item"><strong>[24]</strong> Kruger, J. & Dunning, D. (1999). "Unskilled and Unaware of It." <em>JPSP</em> 77(6).</div>
+        <div class="bib-item"><strong>[25]</strong> Russell, B. (1910). "Knowledge by Acquaintance and Knowledge by Description." <em>Proceedings of the Aristotelian Society</em> 11.</div>
+        <div class="bib-item"><strong>[26]</strong> Vaswani, A. et al. (2017). "Attention Is All You Need." <em>NeurIPS</em>. The transformer architecture whose epistemological status is analyzed throughout.</div>
+        <div class="bib-item"><strong>[27]</strong> Marcus, G. & Davis, E. (2019). <em>Rebooting AI</em>. New York: Pantheon.</div>
+        <div class="bib-item"><strong>[28]</strong> Searle, J. (1980). "Minds, Brains and Programs." <em>Behavioral and Brain Sciences</em> 3(3).</div>
       </div>
 
       <div class="section-nav-arrows">
-        <a href="#s15">← §15 Comparative Epistemology</a>
+        <a href="#p8">← §P8 The Suffering Knower</a>
         <a href="#">Continue to Volume II →</a>
       </div>
     </div>
