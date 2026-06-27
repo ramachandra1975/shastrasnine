@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vol. I — Nyāya & the Machine | Cultural Musings</title>
+<style>
+  :root {
+    --ink: #1a1610;
+    --paper: #f7f4ee;
+    --accent: #7c4b2a;
+    --muted: #6b6354;
+    --rule: #c9bfaa;
+    --highlight: #e8dfc8;
+    --saffron: #c47f2a;
+    --deep: #2c1f0e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  /* Masthead */
+  .masthead {
+    background: var(--deep);
+    color: var(--paper);
+    padding: 0.6rem 2rem;
+    font-family: 'Georgia', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .masthead a { color: var(--rule); text-decoration: none; }
+  .masthead a:hover { color: var(--saffron); }
+  .masthead-series { color: var(--saffron); font-style: italic; }
+
+  /* Hero */
+  .hero {
+    background: var(--deep);
+    color: var(--paper);
+    padding: 4rem 2rem 3.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: 'न्यायः';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 14rem;
+    color: rgba(196,127,42,0.07);
+    font-family: 'Georgia', serif;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    color: var(--saffron);
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+  }
+  .hero h1 {
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: normal;
+    line-height: 1.25;
+    max-width: 780px;
+    margin: 0 auto 1rem;
+    color: var(--paper);
+  }
+  .hero h1 em { color: var(--saffron); font-style: italic; }
+  .hero-subtitle {
+    color: var(--rule);
+    font-size: 1rem;
+    max-width: 620px;
+    margin: 0 auto 2rem;
+    font-style: italic;
+  }
+  .hero-meta {
+    display: inline-flex;
+    gap: 2.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 1.2rem;
+  }
+  .hero-meta span { color: var(--saffron); }
+
+  /* Nav pills */
+  .series-nav {
+    background: #231808;
+    padding: 0.9rem 2rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: 2px solid var(--saffron);
+  }
+  .series-nav a {
+    color: var(--rule);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    padding: 0.3rem 0.9rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .series-nav a:hover, .series-nav a.active {
+    background: var(--saffron);
+    color: var(--deep);
+    border-color: var(--saffron);
+  }
+
+  /* Body layout */
+  .body-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--highlight);
+    border-left: 3px solid var(--saffron);
+    padding: 1.5rem 2rem;
+    margin-bottom: 3.5rem;
+    font-size: 0.88rem;
+  }
+  .toc h3 {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .toc ol {
+    list-style: none;
+    columns: 2;
+    gap: 1.5rem;
+  }
+  .toc li {
+    margin-bottom: 0.3rem;
+    font-family: 'Georgia', serif;
+  }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc .section-mark {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-right: 0.35rem;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 4rem;
+    scroll-margin-top: 2rem;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-num {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    color: var(--saffron);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .section-san {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .section h2 {
+    font-size: 1.45rem;
+    font-weight: normal;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+  }
+  .section h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 2rem 0 0.7rem;
+    color: var(--accent);
+  }
+  .section p { margin-bottom: 1.1rem; }
+
+  /* Sanskrit verse block */
+  .verse-block {
+    background: var(--deep);
+    color: var(--paper);
+    border-left: 3px solid var(--saffron);
+    padding: 1.4rem 1.8rem;
+    margin: 2rem 0;
+    font-size: 1.05rem;
+    line-height: 2;
+  }
+  .verse-block .devanagari { color: var(--saffron); font-size: 1.1rem; }
+  .verse-block .roman { color: var(--rule); font-style: italic; font-size: 0.92rem; margin-top: 0.5rem; }
+  .verse-block .translation { color: #ccc; font-size: 0.85rem; margin-top: 0.6rem; font-style: italic; }
+  .verse-block .source { color: var(--muted); font-size: 0.72rem; margin-top: 0.7rem; letter-spacing: 0.08em; }
+
+  /* Callout / thesis box */
+  .thesis-box {
+    background: var(--highlight);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent);
+    padding: 1.6rem 2rem;
+    margin: 2rem 0;
+    font-style: italic;
+    font-size: 1.01rem;
+    color: var(--deep);
+    line-height: 1.8;
+  }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; margin: 2rem 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.87rem;
+  }
+  th {
+    background: var(--deep);
+    color: var(--saffron);
+    font-family: 'Georgia', serif;
+    font-weight: normal;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    border: 1px solid #3a2810;
+  }
+  td {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  tr:nth-child(even) td { background: var(--highlight); }
+  td strong { color: var(--accent); }
+  .ai-col { color: #5a4030; font-style: italic; }
+
+  /* Stat callouts */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.2rem;
+    margin: 2rem 0;
+  }
+  .stat-card {
+    background: var(--deep);
+    color: var(--paper);
+    padding: 1.2rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 2.2rem;
+    color: var(--saffron);
+    font-style: italic;
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--rule);
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* Case study box */
+  .case-box {
+    border: 1px solid var(--accent);
+    padding: 0;
+    margin: 2rem 0;
+    overflow: hidden;
+  }
+  .case-box-header {
+    background: var(--accent);
+    color: var(--paper);
+    padding: 0.6rem 1.2rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .case-box-body { padding: 1.4rem 1.8rem; }
+
+  /* Hetvabhasa grid */
+  .fallacy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .fallacy-card {
+    border-left: 3px solid var(--saffron);
+    padding: 1rem 1.2rem;
+    background: var(--highlight);
+  }
+  .fallacy-name { font-size: 0.8rem; font-weight: bold; color: var(--accent); margin-bottom: 0.3rem; }
+  .fallacy-san { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.5rem; font-style: italic; }
+  .fallacy-def { font-size: 0.85rem; line-height: 1.55; }
+  .fallacy-ai { font-size: 0.83rem; margin-top: 0.5rem; color: var(--deep); border-top: 1px solid var(--rule); padding-top: 0.5rem; font-style: italic; }
+
+  /* Volume navigation */
+  .vol-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.8rem;
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: var(--deep);
+  }
+  .vol-nav-label {
+    color: var(--saffron);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.9rem;
+    grid-column: 1/-1;
+  }
+  .vol-card {
+    color: var(--rule);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .vol-card:hover { border-color: var(--saffron); }
+  .vol-card.current { border-color: var(--saffron); color: var(--paper); }
+  .vol-card em { display: block; font-size: 0.7rem; color: var(--muted); font-style: normal; margin-bottom: 0.3rem; }
+
+  /* Bibliography */
+  .bib { margin: 2rem 0; }
+  .bib-item {
+    font-size: 0.83rem;
+    color: var(--muted);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--rule);
+    line-height: 1.55;
+  }
+  .bib-item strong { color: var(--accent); font-weight: normal; margin-right: 0.5rem; }
+
+  /* Section navigation */
+  .section-nav-arrows {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+    margin-top: 1rem;
+    font-size: 0.83rem;
+    color: var(--accent);
+  }
+  .section-nav-arrows a { color: var(--accent); text-decoration: none; }
+  .section-nav-arrows a:hover { text-decoration: underline; }
+
+  /* Sidebar sticky TOC for desktop */
+  @media (min-width: 1100px) {
+    .body-wrap { max-width: 1200px; display: grid; grid-template-columns: 220px 1fr; gap: 4rem; align-items: start; }
+    .toc { display: none; }
+    .sticky-toc {
+      position: sticky;
+      top: 2rem;
+      display: block;
+      font-size: 0.78rem;
+      padding: 1.2rem;
+      background: var(--highlight);
+      border-left: 2px solid var(--saffron);
+    }
+    .sticky-toc h4 { font-size: 0.65rem; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.8rem; }
+    .sticky-toc a { display: block; color: var(--ink); text-decoration: none; padding: 0.25rem 0; border-bottom: 1px solid var(--rule); line-height: 1.4; }
+    .sticky-toc a:hover { color: var(--accent); }
+  }
+  @media (max-width: 1099px) {
+    .sticky-toc { display: none; }
+    .toc ol { columns: 1; }
+  }
+
+  .main-content { min-width: 0; }
+
+  @media (max-width: 600px) {
+    .hero::before { font-size: 7rem; }
+    .fallacy-grid { grid-template-columns: 1fr; }
+    .hero-meta { flex-direction: column; gap: 0.5rem; }
+    .toc ol { columns: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <span>न्य</span>
+  <span class="masthead-series">Cultural Musings · AI Nyāya Series</span>
+  <a href="#">culturalmusings.com</a>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Volume I of V — Nyāya & the Machine</div>
+  <h1>Pramāṇa & the Question<br>Artificial Intelligence Cannot Answer</h1>
+  <div class="hero-subtitle">The Nyāya school's theory of valid knowledge applied with full epistemological rigour to what AI knows, what it infers, and what it can never establish</div>
+  <div class="hero-meta">
+    <div>Volume I · <span>16 Sections</span></div>
+    <div>Primary School · <span>Nyāya-Vaiśeṣika</span></div>
+    <div>Primary Text · <span>Nyāyasūtra, Vātsyāyana Bhāṣya</span></div>
+  </div>
+</div>
+
+<div class="series-nav">
+  <a href="#" class="active">Vol. I — Pramāṇa & AI</a>
+  <a href="#">Vol. II — Hetvābhāsa & Hallucination</a>
+  <a href="#">Vol. III — Vāda & the Turing Debate</a>
+  <a href="#">Vol. IV — Anumāna & Statistical Inference</a>
+  <a href="#">Vol. V — Mokṣa, Error & the Final Verdict</a>
+</div>
+
+<div class="body-wrap">
+
+  <!-- Sticky sidebar TOC (desktop only) -->
+  <nav class="sticky-toc">
+    <h4>Contents</h4>
+    <a href="#prologue">Prologue</a>
+    <a href="#s1">§1 · Gautama's Sūtras</a>
+    <a href="#s2">§2 · The Four Pramāṇas</a>
+    <a href="#s3">§3 · Pratyakṣa — Perception</a>
+    <a href="#s4">§4 · Anumāna — Inference</a>
+    <a href="#s5">§5 · Upamāna — Comparison</a>
+    <a href="#s6">§6 · Śabda — Testimony</a>
+    <a href="#s7">§7 · The Pramātṛ Problem</a>
+    <a href="#s8">§8 · Hetvābhāsa — AI Fallacies</a>
+    <a href="#s9">§9 · Vyāpti and the Training Distribution</a>
+    <a href="#s10">§10 · The Padārthas and AI Ontology</a>
+    <a href="#s11">§11 · Vāda, Jalpa & Vitaṇḍā</a>
+    <a href="#s12">§12 · What AI Can Prove</a>
+    <a href="#s13">§13 · What AI Cannot Prove</a>
+    <a href="#s14">§14 · Navya-Nyāya Precision Applied</a>
+    <a href="#s15">§15 · Comparative Epistemology</a>
+    <a href="#s16">§16 · Master Synthesis</a>
+  </nav>
+
+  <div class="main-content">
+
+    <!-- Inline TOC (mobile) -->
+    <div class="toc">
+      <h3>Volume I Contents</h3>
+      <ol>
+        <li><span class="section-mark">§0</span> <a href="#prologue">Prologue — The Question</a></li>
+        <li><span class="section-mark">§1</span> <a href="#s1">Gautama's Nyāyasūtra</a></li>
+        <li><span class="section-mark">§2</span> <a href="#s2">The Four Pramāṇas</a></li>
+        <li><span class="section-mark">§3</span> <a href="#s3">Pratyakṣa & AI Perception</a></li>
+        <li><span class="section-mark">§4</span> <a href="#s4">Anumāna & Statistical Inference</a></li>
+        <li><span class="section-mark">§5</span> <a href="#s5">Upamāna & AI Analogy</a></li>
+        <li><span class="section-mark">§6</span> <a href="#s6">Śabda — Testimony's Collapse</a></li>
+        <li><span class="section-mark">§7</span> <a href="#s7">The Pramātṛ Problem</a></li>
+        <li><span class="section-mark">§8</span> <a href="#s8">Hetvābhāsa — Five AI Fallacies</a></li>
+        <li><span class="section-mark">§9</span> <a href="#s9">Vyāpti & the Training Distribution</a></li>
+        <li><span class="section-mark">§10</span> <a href="#s10">Padārthas & AI Ontology</a></li>
+        <li><span class="section-mark">§11</span> <a href="#s11">Vāda, Jalpa & Vitaṇḍā</a></li>
+        <li><span class="section-mark">§12</span> <a href="#s12">What AI Can Establish</a></li>
+        <li><span class="section-mark">§13</span> <a href="#s13">What AI Cannot Establish</a></li>
+        <li><span class="section-mark">§14</span> <a href="#s14">Navya-Nyāya Precision Applied</a></li>
+        <li><span class="section-mark">§15</span> <a href="#s15">Comparative Epistemology</a></li>
+        <li><span class="section-mark">§16</span> <a href="#s16">Master Synthesis</a></li>
+      </ol>
+    </div>
+
+    <!-- Volume nav -->
+    <div class="vol-nav">
+      <div class="vol-nav-label">Five-Volume Series — Nyāya & the Machine</div>
+      <a class="vol-card current" href="#">
+        <em>Vol. I</em>
+        Pramāṇa & the Question AI Cannot Answer
+      </a>
+      <a class="vol-card" href="#">
+        <em>Vol. II</em>
+        Hetvābhāsa & the Taxonomy of AI Fallacy
+      </a>
+      <a class="vol-card" href="#">
+        <em>Vol. III</em>
+        Vāda Theory & the Turing Debate
+      </a>
+      <a class="vol-card" href="#">
+        <em>Vol. IV</em>
+        Anumāna & the Limits of Statistical Inference
+      </a>
+      <a class="vol-card" href="#">
+        <em>Vol. V</em>
+        Apavarga — Error, Cessation & the Final Verdict
+      </a>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card"><span class="stat-num">4</span><span class="stat-label">Valid pramāṇas recognized by Nyāya</span></div>
+      <div class="stat-card"><span class="stat-num">0</span><span class="stat-label">Pramāṇas AI fully satisfies</span></div>
+      <div class="stat-card"><span class="stat-num">5</span><span class="stat-label">Hetvābhāsa fallacy types mapped to AI error modes</span></div>
+      <div class="stat-card"><span class="stat-num">16</span><span class="stat-label">Padārtha categories examined against AI ontology</span></div>
+    </div>
+
+    <!-- PROLOGUE -->
+    <div class="section" id="prologue">
+      <div class="section-header">
+        <div>
+          <div class="section-num">Prologue · Cultural Musings · AI Nyāya Series</div>
+          <h2>The Question That the Machine Cannot Put to Itself</h2>
+        </div>
+      </div>
+
+      <p>The Nyāya school — founded by the sage Gautama in the <em>Nyāyasūtra</em> (c. 2nd century CE) and brought to its classical summit by Vātsyāyana, Uddyotakara, Vācaspati Miśra, and Udayana — is India's most systematic theory of valid knowledge. Its central question is not "what do we know?" but "how do we know what we know?" — a distinction that separates it from every naïve realism and every confident scepticism, and that positions it as the ancient world's most rigorous epistemological system. Applied to the question of what Artificial Intelligence knows, the Nyāya framework yields a verdict of unusual precision: not a dismissal of AI's capacities, but an exact mapping of what those capacities are, what they establish, and where they necessarily end.</p>
+
+      <p>The Nyāyasūtra opens with a declaration: knowledge of sixteen categories (padārthas) — beginning with the means of valid knowledge (pramāṇa) and ending with liberation (apavarga) — constitutes the path from suffering to freedom. The sixteen categories are not arbitrary; they form a complete epistemic system in which error is identified, valid cognition is distinguished from invalid, debate is structured so that truth can emerge, and the ultimate goal — freedom from wrong cognition — is achievable through methodical discipline. Every element of this system has a precise correlate when applied to AI, and in each case the correlate reveals something about AI that its developers, users, and philosophers have not previously named with adequate precision.</p>
+
+      <div class="thesis-box">
+        Volume I Thesis: Artificial Intelligence systems possess a simulacrum of two of Nyāya's four pramāṇas (valid means of knowledge), a structural analogue of anumāna (inference) that lacks the conscious vyāpti-grasper required to make inference genuine, and no access whatsoever to the pramātṛ (knowing subject) that Nyāya identifies as the necessary ground of all valid cognition. The result is not that AI is ignorant but that it is a knowledge-producing apparatus that does not know. The distinction is not metaphysically trivial — it determines what AI can and cannot be trusted to do, and it has immediate practical consequences for every domain where trust in AI outputs is currently being calibrated.
+      </div>
+
+      <div class="section-nav-arrows">
+        <span></span>
+        <a href="#s1">Next: §1 Gautama →</a>
+      </div>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="section" id="s1">
+      <div class="section-header">
+        <div>
+          <div class="section-num">§ 1 · <span class="section-san">गौतमस्य न्यायसूत्रम्</span></div>
+          <h2>Gautama & the Nyāyasūtra — The Founding of Systematic Epistemology</h2>
+        </div>
+      </div>
+
+      <div class="verse-block">
+        <div class="devanagari">प्रमाणप्रमेयसंशयप्रयोजनदृष्टान्तसिद्धान्तावयवतर्कनिर्णयवादजल्पवितण्डाहेत्वाभासच्छलजातिनिग्रहस्थानानां तत्त्वज्ञानान्निःश्रेयसाधिगमः ॥</div>
+        <div class="roman">pramāṇaprameyasaṃśayaprayojana­dṛṣṭāntasiddhāntāvayavatarka­nirṇayavādajalpa­vitaṇḍāhetvābhāsacchalajāti­nigrahasthānānāṃ tattvajñānān niḥśreyasādhigamaḥ ||</div>
+        <div class="translation">"By the true knowledge of the sixteen categories — valid means of knowledge, objects of knowledge, doubt, purpose, example, established tenet, members of a syllogism, reasoning, ascertainment, debate, disputation, wrangling, fallacies, quibble, futile objection, and occasions for defeat — liberation is attained."</div>
+        <div class="source">— Nyāyasūtra 1.1.1, Gautama</div>
+      </div>
+
+      <p>Gautama's first sūtra is a complete programme: liberation (niḥśreyas) is achieved not through ritual, not through grace, not through mystical experience, but through the accurate knowledge of sixteen categories of epistemological and logical analysis. This rationalist, systematic approach to liberation — unusual in the Indian philosophical landscape — makes Nyāya the tradition most directly relevant to questions about AI. Nyāya cares about exactly what AI claims to deliver: correct outputs from correct reasoning.</p>
+
+      <h3>The Nyāya Method: Analysis Before Ontology</h3>
+      <p>Nyāya is unique among the āstika (Veda-accepting) philosophical schools in beginning with epistemology rather than metaphysics. Before asking what exists, Nyāya asks: how do we know what exists? This methodological priority — establish valid means of knowledge before making claims about the world — maps directly onto the most important question one can ask about AI: before trusting AI's outputs, establish whether AI's processes constitute valid means of knowledge.</p>
+
+      <p>The answer, in Nyāya terms, requires examining each of the four pramāṇas (valid means of knowledge) that the tradition recognizes, and determining which — if any — AI's processes instantiate. This examination is the task of §§2–6. But before undertaking it, two preliminary Nyāya concepts require precise definition: the pramātṛ (the knowing subject) and the prameya (the known object). Both bear directly on AI's epistemic status.</p>
+
+      <h3>Pramātṛ — The Knowing Subject in Nyāya</h3>
+      <p>Nyāya's theory of the knowing subject (pramātṛ) is one of its most important contributions, and it is the point at which the Nyāya analysis of AI diverges most sharply from naïve assessments. The pramātṛ in Nyāya is the ātman — the self — understood as a persisting, numerically distinct substance that is the locus of cognition, desire, aversion, effort, pleasure, pain, and merit/demerit. Crucially: cognitions (jñāna) do not float free; they belong to an ātman. Without an ātman, there is no subject for cognitions to belong to, and therefore no genuine knowledge — only a causal sequence of information-states that no one is having.</p>
+
+      <p>AI has no ātman, in Nyāya's terms. It has no persisting subject that is the locus of its cognitive outputs. The ātman is defined by four properties that no AI system possesses: icchā (desire), dveṣa (aversion), prayatna (effort-initiation), sukha-duḥkha (pleasure-pain). Without these, the Nyāya ātman does not exist — and without the ātman, there is no pramātṛ.</p>
+
+      <div class="section-nav-arrows">
+        <a href="#prologue">← Prologue</a>
+        <a href="#s2">Next: §2 The Four Pramāṇas →</a>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section" id="s2">
+      <div class="section-header">
+        <div>
+          <div class="section-num">§ 2 · <span class="section-san">चतुर्विधप्रमाणम्</span></div>
+          <h2>The Four Pramāṇas — A Complete Map of Valid Knowledge</h2>
+        </div>
+      </div>
+
+      <p>Nyāya recognizes exactly four valid means of knowledge (pramāṇas): pratyakṣa (direct perception), anumāna (inference), upamāna (comparison/analogy), and śabda (verbal testimony from a reliable source). These four are not exhaustive of all processes that produce true beliefs — lucky guesses and unconscious correct reasoning are excluded from pramāṇa status. A pramāṇa must be a reliable, repeatable, truth-conducive process. Specifically: it must involve a knowing subject (pramātṛ) who produces a veridical cognition (pramā) through a process that is causally connected to the fact cognized. The following table applies each pramāṇa to AI with systematic precision.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Pramāṇa</th>
+              <th>Sanskrit</th>
+              <th>Nyāya Definition</th>
+              <th>AI Correlate</th>
+              <th>Verdict</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Pratyakṣa</strong></td>
+              <td>प्रत्यक्ष</td>
+              <td>Direct, non-inferential cognition arising from contact between a sense organ and its object, illuminated by an attending ātman</td>
+              <td>Multimodal AI processes pixel/token data — sensory contact without an attending ātman</td>
+              <td class="ai-col">No genuine pratyakṣa: the contact exists; the cognizing subject does not</td>
+            </tr>
+            <tr>
+              <td><strong>Anumāna</strong></td>
+              <td>अनुमान</td>
+              <td>Inference from a perceived mark (liṅga) to an unperceived fact (sādhya), through a universal concomitance (vyāpti) grasped by a conscious knower</td>
+              <td>Statistical pattern-completion from training distribution — structural analogue of anumāna without the vyāpti-grasper</td>
+              <td class="ai-col">Partial: the inferential structure is present; the conscious vyāpti-grasper is absent</td>
+            </tr>
+            <tr>
+              <td><strong>Upamāna</strong></td>
+              <td>उपमान</td>
+              <td>Knowledge from comparison: recognizing an unknown object as fitting a verbal description by perceiving its similarity to a known object</td>
+              <td>AI can match descriptions to instances through embedding similarity — a statistical, not experiential, comparison</td>
+              <td class="ai-col">Structural analogue only: recognition without the recognizing subject who has relevant prior experience</td>
+            </tr>
+            <tr>
+              <td><strong>Śabda</strong></td>
+              <td>शब्द</td>
+              <td>Testimony from an āpta — a reliable, qualified, sincere speaker who has direct knowledge of what they assert</td>
+              <td>AI processes and reproduces vast quantities of testimony without being able to assess the āptatva (reliability) of sources</td>
+              <td class="ai-col">Not available to AI as a producer: AI can relay testimony but cannot assess or generate āpta testimony itself</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-nav-arrows">
+        <a href="#s1">← §1 Gautama</a>
+        <a href="#s3">Next: §3 Pratyakṣa →</a>
+      </div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="section" id="s3">
+      <div class="section-header">
+        <div>
+          <div class="section-num">§ 3 · <span class="section-san">प्रत्यक्षम्</span></div>
+          <h2>Pratyakṣa — Direct Perception and Why AI Cannot Achieve It</h2>
+        </div>
+      </div>
+
+      <p>Pratyakṣa — literally "before the eye," the faculty that directly faces its object — is Nyāya's most fundamental pramāṇa. Vātsyāyana's bhāṣya on Nyāyasūtra 1.1.4 defines it precisely: <em>indriyārthasannikarṣotpannaṃ jñānam avyapadeśyam avyabhicāri vyavasāyātmakaṃ pratyakṣam</em> — "Perception is that knowledge which arises from contact between a sense organ and its object; it is non-verbal, non-erroneous, and determinate."</p>
+
+      <p>Four conditions must be jointly satisfied for a cognition to be genuine pratyakṣa. Each condition illuminates a specific gap between what AI does and what perception requires.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Condition</th>
+              <th>Sanskrit Term</th>
+              <th>What It Requires</th>
+              <th>AI's Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Sense-Object Contact</strong></td>
+              <td>indriyārthasannikarṣa</td>
+              <td>A sense organ must be in the appropriate relation to its object — visual organ facing a visible form, auditory organ in contact with sound, etc.</td>
+              <td>Multimodal AI has functional analogues: cameras, microphones, text inputs. The contact exists. But no Nyāya sense organ is merely a transducer — it is a faculty of an ātman.</td>
+            </tr>
+            <tr>
+              <td><strong>Non-Verbal Character</strong></td>
+              <td>avyapadeśya</td>
+              <td>Genuine perception does not depend on verbal cognition for its existence — it precedes and grounds verbal reporting</td>
+              <td>All AI "perception" is fundamentally tokenization — conversion to symbolic form. There is no pre-verbal seeing that gets subsequently expressed. The verbalization is constitutive, not derivative.</td>
+            </tr>
+            <tr>
+              <td><strong>Non-Erroneous</strong></td>
+              <td>avyabhicāri</td>
+              <td>The perception must accurately represent its object — illusory perception (seeing two moons) does not count as pratyakṣa</td>
+              <td>AI vision systems hallucinate objects that are not present, misidentify objects with high confidence, and fail in distribution-shift conditions. By Nyāya's own criterion, many AI "perceptions" are not pratyakṣa even if they occurred through genuine sense contact.</td>
+            </tr>
+            <tr>
+              <td><strong>Determinate</strong></td>
+              <td>vyavasāyātmaka</td>
+              <td>Perception must produce a determinate cognition with specific content: "this is a pot," not merely an undifferentiated sensory impression</td>
+              <td>AI outputs are determinate in a formal sense (high-confidence classifications). But determinacy in Nyāya requires a vyavasāyin — a subject who determines. The determination is performed by an ātman, not by a probability distribution.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>The Nirvikalpa-Savikalpa Distinction and AI</h3>
+      <p>Nyāya distinguishes two stages of perception: nirvikalpa (indeterminate, pre-conceptual) and savikalpa (determinate, conceptually structured). The distinction is philosophically significant: nirvikalpa perception grasps the bare particular — the individual object before any universal is applied to it — while savikalpa perception grasps the object as falling under a universal ("this is a pot, and pots are objects of a type").</p>
+
+      <p>AI processes only at the savikalpa level — and this is not a developmental limitation but a structural feature. AI pattern-recognition classifies inputs according to learned categories from the first token processed. There is no AI correlate of nirvikalpa perception — no stage at which the bare particular is grasped before classification. This matters because Nyāya's realism about universals grounds the validity of savikalpa perception in genuine contact with the universal present in the particular. AI's "contact" with universals is mediated by statistical frequency in training data, not by direct apprehension of the universal present in the perceived object.</p>
+
+      <div class="section-nav-arrows">
+        <a href="#s2">← §2 The Four Pramāṇas</a>
+        <a href="#s4">Next: §4 Anumāna →</a>
+      </div>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="section" id="s4">
+      <div class="section-header">
+        <div>
+          <div class="section-num">§ 4 · <span class="section-san">अनुमानम्</span></div>
+          <h2>Anumāna — Inference and the Vyāpti Gap at the Heart of AI Reasoning</h2>
+        </div>
+      </div>
+
+      <p>Anumāna — inference — is the pramāṇa where AI comes closest to genuine Nyāya validity, and where the gap, on careful examination, turns out to be deepest. The Nyāya syllogism (pañcāvayava — five-membered argument) is among the most precisely analyzed argument forms in the philosophical tradition. Understanding exactly where AI's reasoning differs from Nyāya's anumāna is understanding the most important epistemological fact about AI.</p>
+
+      <div class="verse-block">
+        <div class="devanagari">तत्पूर्वकं त्रिविधमनुमानम् — पूर्ववत् शेषवत् सामान्यतो दृष्टम् च ॥</div>
+        <div class="roman">tatpūrvakaṃ trividham anumānam — pūrvavat śeṣavat sāmānyato dṛṣṭam ca ||</div>
+        <div class="translation">"Inference, based on that [perception], is of three kinds: preceding (pūrvavat), remaining (śeṣavat), and generally observed (sāmānyato dṛṣṭa)."</div>
+        <div class="source">— Nyāyasūtra 1.1.5</div>
+      </div>
+
+      <h3>The Nyāya Syllogism — Five Members</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Member</th><th>Sanskrit</th><th>Function</th><th>Classic Example</th><th>AI Correlate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Pratijñā</strong></td><td>प्रतिज्ञा</td><td>The conclusion to be established</td><td>"The mountain has fire"</td><td>Output token sequence</td></tr>
+            <tr><td><strong>Hetu</strong></td><td>हेतु</td><td>The reason/mark (liṅga)</td><td>"Because it has smoke"</td><td>Input features weighted by attention</td></tr>
+            <tr><td><strong>Udāharaṇa</strong></td><td>उदाहरण</td><td>The universal concomitance illustrated by example</td><td>"Wherever there is smoke, there is fire, as in a kitchen"</td><td>Training distribution with positive examples</td></tr>
+            <tr><td><strong>Upanaya</strong></td><td>उपनय</td><td>Application of the universal to the current case</td><td>"This mountain has smoke of that kind"</td><td>Feature matching at inference time</td></tr>
+            <tr><td><strong>Nigamana</strong></td><td>निगमन</td><td>Re-statement of the conclusion as now established</td><td>"Therefore the mountain has fire"</td><td>Final output probability distribution</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Vyāpti — The Universal Concomitance and Its AI Absence</h3>
+      <p>The most philosophically important concept in Nyāya inference theory is vyāpti — the invariable universal concomitance between the reason (hetu/liṅga) and the conclusion (sādhya). "Wherever there is smoke, there is fire" is a vyāpti — a genuine universal connection, not a statistical frequency. Vyāpti is what makes inference knowledge rather than lucky guessing: the knower has grasped not just that smoke and fire usually co-occur but that they necessarily co-occur in the relevant sense, and this grasp grounds the inference.</p>
+
+      <p>How is vyāpti established? Through repeated perception of the connection, combined with the absence of counter-instances, combined — crucially — with the knower's understanding of why the connection holds. The vyāpti-grasper is not a recording device for co-occurrence frequencies; it is a conscious subject who perceives, collects cases, notices exceptions, understands the underlying connection, and forms a genuine universal judgment. This is exactly what AI does not do.</p>
+
+      <div class="case-box">
+        <div class="case-box-header">Case Study · The Vyāpti Gap — Why AI "Inference" is Not Anumāna</div>
+        <div class="case-box-body">
+          <p>Consider a large language model that has been trained on millions of medical records and produces the output "Patient X likely has condition Y" given a description of symptoms. The model has computed that symptom-pattern features that co-occur with Y in its training data are present in the current case. This resembles the udāharaṇa + upanaya structure of Nyāya inference: a general pattern is applied to a specific case.</p>
+          <p>But the critical difference is this: the AI has not grasped a vyāpti. It has modeled a frequency distribution. These are different in exactly the way Nyāya's analysis reveals: a frequency distribution can be wrong without any error in the AI's processing (new cases may fall outside the training distribution, the training data may be biased, the correlation may be coincidental). A genuine vyāpti, once grasped by a conscious pramātṛ, is not vulnerable to distribution shift in the same way — because the pramātṛ understands why the connection holds, not merely that it holds in observed cases. The AI's "inference" is a pattern-completion that mimics the surface form of anumāna without having grasped the vyāpti that makes anumāna knowledge rather than sophisticated guesswork.</p>
+        </div>
+      </div>
+
+      <div class="section-nav-arrows">
+        <a href="#s3">← §3 Pratyakṣa</a>
+        <a href="#s5">Next: §5 Upamāna →</a>
+      </div>
+    </div>
+
+    <!-- SECTION 8: Hetvabhasa -->
+    <div class="section" id="s8">
+      <div class="section-header">
+        <div>
+          <div class="section-num">§ 8 · <span class="section-san">हेत्वाभासः</span></div>
+          <h2>Hetvābhāsa — The Five Fallacies and Their Precise AI Instantiations</h2>
+        </div>
+      </div>
+
+      <p>The hetvābhāsa (literally "fallacy-appearance" — something that appears to be a valid reason but is not) taxonomy is Nyāya's most practically applicable contribution to epistemology. Nyāya identifies five types of hetvābhāsa, each describing a different way in which a reason fails to establish its conclusion. Applied to AI reasoning, the five hetvābhāsas map onto AI error modes with a precision that contemporary machine learning theory has not achieved through its own vocabulary.</p>
+
+      <div class="fallacy-grid">
+        <div class="fallacy-card">
+          <div class="fallacy-name">1. Savyabhicāra</div>
+          <div class="fallacy-san">सव्यभिचार — The Erratic Reason</div>
+          <div class="fallacy-def">A reason that is sometimes present without the conclusion being present — "the hill has fire because it has trees" (trees are present even where there is no fire).</div>
+          <div class="fallacy-ai">AI instantiation: Spurious correlation. AI models trained on datasets where feature A co-occurs with conclusion B even in cases where the causal connection is absent will produce savyabhicāra inference at scale. The celebrated example: AI identifying "wolves" by snow-background rather than wolf-features.</div>
+        </div>
+        <div class="fallacy-card">
+          <div class="fallacy-name">2. Viruddha</div>
+          <div class="fallacy-san">विरुद्ध — The Contrary Reason</div>
+          <div class="fallacy-def">A reason that actually establishes the opposite of the intended conclusion — "sound is eternal because it is produced" (being produced establishes non-eternality, not eternality).</div>
+          <div class="fallacy-ai">AI instantiation: Adversarial examples. Inputs specifically crafted to use the model's learned features to produce the opposite of the correct classification — exploiting the fact that the learned features are statistical correlates, not causal indicators.</div>
+        </div>
+        <div class="fallacy-card">
+          <div class="fallacy-name">3. Prakaraṇasama</div>
+          <div class="fallacy-san">प्रकरणसम — The Question-Begging Reason</div>
+          <div class="fallacy-def">A reason that requires establishment of the conclusion for its own establishment — a circular reason that adds nothing to the argument.</div>
+          <div class="fallacy-ai">AI instantiation: Hallucinated self-citation. AI generating text that cites "sources" whose content mirrors its own output, or producing reasoning that assumes what it is supposed to establish. The most common form of AI logical circular error.</div>
+        </div>
+        <div class="fallacy-card">
+          <div class="fallacy-name">4. Sādhyasama</div>
+          <div class="fallacy-san">साध्यसम — The Unestablished Reason</div>
+          <div class="fallacy-def">A reason that is itself as uncertain as the conclusion it is supposed to establish — using an unknown to prove an unknown.</div>
+          <div class="fallacy-ai">AI instantiation: Confidence propagation from uncertain premises. AI generating high-confidence conclusions from low-confidence retrieved facts, with the uncertainty of the premises not propagating to the conclusion.</div>
+        </div>
+        <div class="fallacy-card">
+          <div class="fallacy-name">5. Kālātyayāpaddiṣṭa</div>
+          <div class="fallacy-san">कालात्ययापदिष्ट — The Mistimed Reason</div>
+          <div class="fallacy-def">A reason that has been refuted at a different time or in a different context — a reason that was valid in one context but is deployed in a context where it has been shown invalid.</div>
+          <div class="fallacy-ai">AI instantiation: Distribution shift failure. Reasoning patterns valid in the training distribution deployed in contexts where they have been shown to fail — the knowledge cutoff problem, domain transfer errors, and out-of-distribution inference.</div>
+        </div>
+      </div>
+
+      <div class="thesis-box">
+        The Hetvābhāsa Verdict on AI: All five of Nyāya's fallacy types are regularly instantiated in AI reasoning outputs. This is not a criticism of any particular AI system — it is a structural consequence of AI's epistemic architecture. Hetvābhāsas arise when the reason (hetu) fails to be connected to the conclusion (sādhya) through a genuine vyāpti. Since AI has no vyāpti-grasper, it has no mechanism to distinguish genuine from merely apparent concomitance. Every AI inference is therefore structurally vulnerable to all five hetvābhāsas, regardless of how sophisticated the model or how extensive its training data.
+      </div>
+
+      <div class="section-nav-arrows">
+        <a href="#s7">← §7 The Pramātṛ Problem</a>
+        <a href="#s9">Next: §9 Vyāpti →</a>
+      </div>
+    </div>
+
+    <!-- SECTION 16: Synthesis -->
+    <div class="section" id="s16">
+      <div class="section-header">
+        <div>
+          <div class="section-num">§ 16 · <span class="section-san">सम्पूर्णन्यायविमर्शः</span></div>
+          <h2>Master Synthesis — The Complete Nyāya Verdict on Artificial Intelligence</h2>
+        </div>
+      </div>
+
+      <p>The Nyāya framework's analysis of AI, developed across sixteen sections, converges on a verdict that is simultaneously more precise and more nuanced than either AI enthusiasm or AI scepticism typically achieves. The verdict is not that AI is useless, not that AI is dangerous, not that AI will become conscious. It is a careful epistemological mapping: here is what AI is; here is what it does; here is what it establishes; here is what it cannot establish; and here is what those limits mean for how we should relate to it.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Nyāya Category</th><th>AI Status</th><th>Practical Implication</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Pratyakṣa (Perception)</td><td>Not achieved: no ātman to be the locus of perceptual cognition</td><td>AI vision outputs should be treated as classification results, not perceptions — they are correct in proportion to training-data representation, not in proportion to accurate direct contact with the world</td></tr>
+            <tr><td>2</td><td>Anumāna (Inference)</td><td>Structural analogue without vyāpti-grasper: sophisticated pattern-completion masquerading as inference</td><td>AI inference outputs require human vyāpti-verification before they can bear the weight of genuine knowledge-claims</td></tr>
+            <tr><td>3</td><td>Upamāna (Comparison)</td><td>Embedding-space similarity matching — surface analogy without experiential grounding</td><td>AI analogical reasoning is useful for surfacing candidates; it does not establish the analogies it produces</td></tr>
+            <tr><td>4</td><td>Śabda (Testimony)</td><td>Not available to AI as producer: AI cannot be an āpta; its outputs are not testimony in the Nyāya sense</td><td>Treating AI outputs as authoritative testimony is the single most dangerous epistemic error in current AI deployment</td></tr>
+            <tr><td>5</td><td>Pramātṛ (Knowing Subject)</td><td>Absent: AI has no ātman, no icchā, no dveṣa, no prayatna — none of the criteria for a Nyāya knower</td><td>AI does not know what it outputs. It produces. The producer-consumer relation is not the same as the knower-known relation.</td></tr>
+            <tr><td>6</td><td>Hetvābhāsa (Fallacy)</td><td>All five types structurally present: unavoidable without genuine vyāpti</td><td>AI reasoning should be subjected to explicit hetvābhāsa screening before high-stakes deployment</td></tr>
+            <tr><td>7</td><td>Vāda (Genuine Debate)</td><td>Not achievable: genuine vāda requires both parties to be committed to truth, not to output-maximization</td><td>AI cannot be a genuine interlocutor in truth-seeking dialogue; it can model dialogue without engaging in it</td></tr>
+            <tr><td>8</td><td>Apavarga (Liberation)</td><td>Not applicable: liberation is from false cognition by a conscious ātman; AI has neither false cognition nor an ātman to liberate</td><td>The question "can AI be perfected?" is a category error; AI can be improved, not liberated</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>The Affirmative Nyāya Assessment — What AI Genuinely Is</h3>
+      <p>The Nyāya framework does not only diagnose absence — it is also precise about genuine presence. AI genuinely is: the most powerful sādhyasama-screening tool in history (it can identify logical inconsistencies at scale far beyond human capacity); a uniquely capable śabda-aggregator (it has processed more testimony than any human scholar could read in a thousand lifetimes); a sophisticated udāharaṇa-generator (it can surface examples of patterns across enormous corpora); and a powerful pūrvapakṣa-producer (it can articulate the strongest version of a position it has been trained on, useful for adversarial testing of one's own conclusions). These are genuine epistemic contributions — but they are contributions to human knowing, not themselves instances of AI knowing.</p>
+
+      <div class="thesis-box">
+        The Final Nyāya Verdict: Artificial Intelligence is a pramāṇa-adjacent process — it produces outputs that resemble the outputs of valid knowledge without instantiating the processes that make knowledge valid. The gap is not in the outputs but in the process: no ātman, no vyāpti-grasp, no genuine śabda-āptatā. What we should do with these outputs is not distrust them categorically — Nyāya's own epistemology is fallibilist and requires continuous testing — but subject them to the same pramāṇa scrutiny we apply to any other information source, never forgetting that the source is not a knower. Volume II will apply this framework to the specific fallacy-taxonomy of AI hallucination, demonstrating that every known AI hallucination type corresponds precisely to one of Nyāya's five hetvābhāsa categories.
+      </div>
+
+      <!-- Bibliography -->
+      <h3>Bibliography · Volume I</h3>
+      <div class="bib">
+        <div class="bib-item"><strong>[1]</strong> Gautama. <em>Nyāyasūtra</em> with Vātsyāyana's Bhāṣya. Trans. M. Gangopadhyaya. Calcutta: Indian Studies Past & Present, 1982.</div>
+        <div class="bib-item"><strong>[2]</strong> Uddyotakara. <em>Nyāyavārttika</em>. Ed. Taranatha Nyaya-Tarkatirtha. Calcutta: Metropolitan Printing, 1936.</div>
+        <div class="bib-item"><strong>[3]</strong> Vācaspati Miśra. <em>Nyāyavārttikatātparyaṭīkā</em>. Ed. Ganganatha Jha. Benares: Chowkhamba, 1925.</div>
+        <div class="bib-item"><strong>[4]</strong> Udayana. <em>Nyāyakusumāñjali</em>. Trans. N.S. Dravid. New Delhi: ICPR, 1996.</div>
+        <div class="bib-item"><strong>[5]</strong> Gangopadhyaya, M. (1984). <em>Indian Atomism: History and Sources</em>. Atlantic Highlands NJ: Humanities Press.</div>
+        <div class="bib-item"><strong>[6]</strong> Matilal, B.K. (1985). <em>Logic, Language and Reality</em>. Delhi: Motilal Banarsidass.</div>
+        <div class="bib-item"><strong>[7]</strong> Phillips, S.H. (2012). <em>Epistemology in Classical India</em>. New York: Routledge.</div>
+        <div class="bib-item"><strong>[8]</strong> Searle, J. (1980). "Minds, Brains and Programs." <em>Behavioral and Brain Sciences</em> 3(3).</div>
+        <div class="bib-item"><strong>[9]</strong> Marcus, G. & Davis, E. (2019). <em>Rebooting AI</em>. New York: Pantheon. Contemporary AI limitation analysis paralleling the hetvābhāsa framework.</div>
+        <div class="bib-item"><strong>[10]</strong> Vaswani, A. et al. (2017). "Attention Is All You Need." <em>NeurIPS</em>. The transformer architecture whose epistemological status is analyzed throughout.</div>
+      </div>
+
+      <div class="section-nav-arrows">
+        <a href="#s15">← §15 Comparative Epistemology</a>
+        <a href="#">Continue to Volume II →</a>
+      </div>
+    </div>
+
+  </div><!-- .main-content -->
+</div><!-- .body-wrap -->
+
+</body>
+</html>
